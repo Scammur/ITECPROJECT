@@ -116,7 +116,7 @@
                     <i class="fa-solid fa-coins me-2"></i>Inventory Valuation
                 </div>
                 <p class="lead">
-                    Accurate inventory valuation provides financial insights for pricing, reporting, and tax compliance. Below is a sample table showing how item values are calculated using FIFO (First-In, First-Out).
+                    The current Inventory Valuation
                 </p>
             </div>
         </div>
@@ -125,27 +125,11 @@
 
         <!-- Inventory Valuation Table -->
         <div class="main-container">
-            <form class="mb-4">
-                <div class="row g-3 align-items-end">
-                    <div class="col-md-6">
-                        <label for="valuationMethod" class="form-label valuation-method">
-                            <i class="fa-solid fa-list-ol me-1"></i>Choose Valuation Method:
-                        </label>
-                        <select class="form-select" id="valuationMethod" disabled>
-                            <option selected>FIFO (First-In, First-Out)</option>
-                            <option disabled>LIFO (Last-In, First-Out)</option>
-                            <option disabled>Weighted Average</option>
-                        </select>
-                        <div class="form-text">Demo only: only FIFO enabled</div>
-                    </div>
-                </div>
-            </form>
             <div class="table-responsive mb-4">
                 <table class="table table-bordered align-middle">
                     <thead>
                         <tr>
                             <th scope="col"><i class="fa-solid fa-box"></i> Item</th>
-                            <th scope="col"><i class="fa-solid fa-barcode"></i> SKU</th>
                             <th scope="col"><i class="fa-solid fa-layer-group"></i> Category</th>
                             <th scope="col"><i class="fa-solid fa-warehouse"></i> Location</th>
                             <th scope="col"><i class="fa-solid fa-sort-numeric-up"></i> In Stock</th>
@@ -156,31 +140,52 @@
                     <tbody>
                         <!-- Example rows, replace with PHP & DB integration -->
                         <tr>
-                            <td>Widget A</td>
-                            <td>SKU-001</td>
+                            <td>Mouse</td>
                             <td>Electronics</td>
                             <td>Rack 1A</td>
                             <td>120</td>
-                            <td>$5.00</td>
-                            <td>$600.00</td>
+                            <td>350.00</td>
+                            <td>42,000.00</td>
                         </tr>
                         <tr>
                             <td>Box B</td>
-                            <td>SKU-002</td>
                             <td>Packaging</td>
                             <td>Rack 2B</td>
                             <td>12</td>
-                            <td>$1.25</td>
-                            <td>$15.00</td>
+                            <td>25.00</td>
+                            <td>300.00</td>
                         </tr>
                         <tr>
                             <td>Envelope C</td>
-                            <td>SKU-003</td>
                             <td>Mailers</td>
                             <td>Rack 3C</td>
                             <td>0</td>
-                            <td>$0.55</td>
-                            <td>$0.00</td>
+                            <td>10.00</td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Stapler</td>
+                            <td>Stationary</td>
+                            <td>Rack 3B</td>
+                            <td>50</td>
+                            <td>100.00</td>
+                            <td>5,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Ballpoint Pen Red</td>
+                            <td>Stationary</td>
+                            <td>Rack 3D</td>
+                            <td>600</td>
+                            <td>12.00</td>
+                            <td>7,200.00</td>
+                        </tr>
+                        <tr>
+                            <td>Syringe 5cc</td>
+                            <td>Medical</td>
+                            <td>Rack 7A</td>
+                            <td>100</td>
+                            <td>10.00</td>
+                            <td>1000.00</td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -190,10 +195,6 @@
                         </tr>
                     </tfoot>
                 </table>
-            </div>
-            <div class="alert alert-info d-flex align-items-center" role="alert">
-                <i class="fa-solid fa-circle-info me-2"></i>
-                Inventory valuation is vital for financial reporting, tax compliance, and making strategic business decisions.
             </div>
         </div>
     </div>
@@ -210,130 +211,4 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <div>
-            <h1>Inventory Valuation</h1>
-            <h4>Last year's Inventory Valuation</h4>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-        <div>
-            <h3>This week</h3>
-            <p>This is the Inventory evaluation for the week.</p>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-        <div>
-            <h3>Last week</h3>
-            <p>This is the Inventory evaluation for last week.</p>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-        <div>
-            <h3>This month</h3>
-            <p>This is the Inventory evaluation for the month.</p>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-        <div>
-            <h3>Last month</h3>
-            <p>This is the Inventory evaluation for last month.</p>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-        <div>
-            <h3>This year's Inventory Valuation</h3>
-            <!--$query = mysqli_query($"SELECT * from table");
-
-foreach($table=mysqli_fetch-array(query));
-?>
-<table>
-    <tr>
-        <td><-?-php $table['month']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['stocks']?></td>
-    </tr>
-    <tr>
-        <td><-?-php $table['prices']?></td>
-    </tr>
-</table>
--->
-            <button>Valuation</button>
-        </div>
-</body>
-</html>
+    
