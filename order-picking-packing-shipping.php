@@ -1,4 +1,3 @@
-```php name=order-picking-packing-shipping.php
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,13 @@
     <!-- Google Fonts Inter (optional, fallback to sans-serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
@@ -44,6 +49,13 @@
             padding: 2em;
             border-radius: 8px;
             box-shadow: 0 2px 8px 0 #00000011;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .main-container.in-view {
+            opacity: 1 !important;
+            transform: none !important;
         }
         .divider {
             border-top: 1px solid #E6E6E6;
@@ -51,6 +63,13 @@
         }
         .process-step {
             margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .process-step.in-view {
+            opacity: 1;
+            transform: none;
         }
         .process-icon {
             font-size: 2rem;
@@ -63,6 +82,13 @@
             padding: 1rem;
             border-radius: 5px;
             margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .highlight.in-view {
+            opacity: 1;
+            transform: none;
         }
         .example-table thead th {
             background: #363636;
@@ -74,6 +100,24 @@
         }
         .example-table tbody tr:nth-child(even) {
             background: #f2f2f2;
+        }
+        .example-table tbody tr {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .example-table tbody tr.in-view {
+            opacity: 1;
+            transform: none;
+        }
+        .alert-info.section-image-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .alert-info.section-image-animate.in-view {
+            opacity: 1 !important;
+            transform: none !important;
         }
     </style>
 </head>
@@ -118,7 +162,7 @@
     <div class="container" style="margin-top: 120px;">
         <!-- Section Title -->
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2">
                     <i class="fa-solid fa-truck-ramp-box me-2"></i>Order Picking, Packing & Shipping
                 </div>
@@ -200,7 +244,7 @@
                 </table>
             </div>
 
-            <div class="alert alert-info mt-4">
+            <div class="alert alert-info mt-4 section-image-animate">
                 <i class="fa-solid fa-circle-info me-2"></i>
                 Streamlining picking, packing, and shipping leads to happier customers and greater warehouse efficiency!
             </div>
@@ -219,6 +263,30 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate on scroll for .main-container, .highlight, .process-step, .example-table tbody tr, and .section-image-animate
+        function animateOnScroll(selector, className = 'in-view') {
+            const elements = document.querySelectorAll(selector);
+            function check() {
+                const triggerBottom = window.innerHeight * 0.92;
+                let delay = 0;
+                elements.forEach((el, idx) => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < triggerBottom && !el.classList.contains(className)) {
+                        el.style.transitionDelay = (delay * 0.13) + "s";
+                        el.classList.add(className);
+                        delay++;
+                    }
+                });
+            }
+            window.addEventListener('scroll', check);
+            document.addEventListener('DOMContentLoaded', check);
+        }
+        animateOnScroll('.main-container');
+        animateOnScroll('.highlight');
+        animateOnScroll('.process-step');
+        animateOnScroll('.example-table tbody tr');
+        animateOnScroll('.section-image-animate');
+    </script>
 </body>
 </html>
-```

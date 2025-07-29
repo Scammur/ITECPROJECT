@@ -14,7 +14,13 @@
     <!-- Google Fonts Inter (optional, fallback to sans-serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
@@ -71,6 +77,30 @@
             border-top: 1px solid #E6E6E6;
             margin: 2rem 0;
         }
+        /* Animation styles from index.php */
+        .card-feature {
+            border: 1px solid #E6E6E6;
+            border-radius: 12px;
+            padding: 32px 20px;
+            background: #fff;
+            box-shadow: 0 2px 6px 0 #00000011;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .card-feature.in-view {
+            opacity: 1;
+            transform: none;
+        }
+        .section-image-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .section-image-animate.in-view {
+            opacity: 1 !important;
+            transform: none !important;
+        }
     </style>
 </head>
 <body>
@@ -114,7 +144,7 @@
     <div class="container" style="margin-top: 120px;">
         <!-- Section Title -->
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2"><i class="fa-solid fa-cubes-stacked me-2"></i>Stock Tracking</div>
                 <p class="lead">Monitor your inventory levels, stock movements, and status in real time.</p>
             </div>
@@ -123,7 +153,7 @@
         <hr class="divider">
 
         <!-- Stock Table -->
-        <div class="main-container">
+        <div class="main-container section-image-animate">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>Current Stock Levels</h4>
                 <a href="#" class="btn btn-primary">
@@ -145,7 +175,7 @@
                     </thead>
                     <tbody>
                         <!-- Example rows, replace with PHP & DB integration -->
-                        <tr>
+                        <tr class="card-feature">
                             <td>Widget A</td>
                             <td>SKU-001</td>
                             <td>Electronics</td>
@@ -158,7 +188,7 @@
                                 <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="card-feature">
                             <td>Box B</td>
                             <td>SKU-002</td>
                             <td>Packaging</td>
@@ -171,7 +201,7 @@
                                 <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="card-feature">
                             <td>Envelope C</td>
                             <td>SKU-003</td>
                             <td>Mailers</td>
@@ -203,5 +233,27 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate on scroll for .card-feature and .section-image-animate
+        function animateOnScroll(selector, className = 'in-view') {
+            const elements = document.querySelectorAll(selector);
+            function check() {
+                const triggerBottom = window.innerHeight * 0.92;
+                let delay = 0;
+                elements.forEach((el, idx) => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < triggerBottom && !el.classList.contains(className)) {
+                        el.style.transitionDelay = (delay * 0.13) + "s";
+                        el.classList.add(className);
+                        delay++;
+                    }
+                });
+            }
+            window.addEventListener('scroll', check);
+            document.addEventListener('DOMContentLoaded', check);
+        }
+        animateOnScroll('.card-feature');
+        animateOnScroll('.section-image-animate');
+    </script>
 </body>
 </html>

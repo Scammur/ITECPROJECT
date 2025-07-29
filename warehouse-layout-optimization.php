@@ -14,7 +14,13 @@
     <!-- Google Fonts Inter (optional, fallback to sans-serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
@@ -43,6 +49,13 @@
             padding: 2em;
             border-radius: 8px;
             box-shadow: 0 2px 8px 0 #00000011;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .main-container.in-view {
+            opacity: 1 !important;
+            transform: none !important;
         }
         .divider {
             border-top: 1px solid #E6E6E6;
@@ -57,10 +70,24 @@
             border-radius: 8px;
             box-shadow: 0 1px 5px #0001;
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .layout-img.in-view {
+            opacity: 1 !important;
+            transform: none !important;
         }
         .opt-list li {
             margin-bottom: 1rem;
             font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .opt-list li.in-view {
+            opacity: 1;
+            transform: none;
         }
         .highlight {
             background: #e7f5ff;
@@ -68,6 +95,13 @@
             padding: 1rem;
             border-radius: 5px;
             margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .highlight.in-view {
+            opacity: 1;
+            transform: none;
         }
     </style>
 </head>
@@ -112,7 +146,7 @@
     <div class="container" style="margin-top: 120px;">
         <!-- Section Title -->
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2">
                     <i class="fa-solid fa-sitemap me-2"></i>Warehouse Layout & Optimization
                 </div>
@@ -125,7 +159,7 @@
 
         <!-- Content -->
         <div class="main-container">
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80" alt="Warehouse Layout" class="layout-img mb-4">
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80" alt="Warehouse Layout" class="layout-img mb-4 section-image-animate">
 
             <div class="highlight d-flex align-items-center">
                 <i class="fa-solid fa-lightbulb tip-icon fa-2x"></i>
@@ -136,37 +170,16 @@
 
             <h4 class="mb-3">Best Practices for Warehouse Layout & Optimization</h4>
             <ul class="opt-list">
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Define clear zones:</strong> Separate receiving, storage, picking, packing, and shipping areas for smooth workflow.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Utilize vertical space:</strong> Install tall shelving and racks to maximize cubic storage.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Use logical item placement:</strong> Place high-turnover or heavy items closer to dispatch to reduce travel time and effort.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Label everything:</strong> Clear, consistent labeling minimizes picking errors and confusion.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Invest in technology:</strong> Use barcode scanners, WMS (Warehouse Management System), and digital maps for real-time optimization.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Keep aisles wide and clear:</strong> Ensure safe and efficient movement of people and equipment.
-                </li>
-                <li>
-                    <i class="fa-solid fa-arrow-right text-primary me-2"></i>
-                    <strong>Review and improve:</strong> Regularly audit your layout and flow for bottlenecks and adjust as needed.
-                </li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Define clear zones:</strong> Separate receiving, storage, picking, packing, and shipping areas for smooth workflow.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Utilize vertical space:</strong> Install tall shelving and racks to maximize cubic storage.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Use logical item placement:</strong> Place high-turnover or heavy items closer to dispatch to reduce travel time and effort.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Label everything:</strong> Clear, consistent labeling minimizes picking errors and confusion.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Invest in technology:</strong> Use barcode scanners, WMS (Warehouse Management System), and digital maps for real-time optimization.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Keep aisles wide and clear:</strong> Ensure safe and efficient movement of people and equipment.</li>
+                <li><i class="fa-solid fa-arrow-right text-primary me-2"></i><strong>Review and improve:</strong> Regularly audit your layout and flow for bottlenecks and adjust as needed.</li>
             </ul>
 
-            <div class="alert alert-info mt-4">
+            <div class="alert alert-info mt-4 section-image-animate">
                 <i class="fa-solid fa-circle-info me-2"></i>
                 An optimized warehouse layout not only saves time but also reduces costs and improves safety!
             </div>
@@ -185,5 +198,30 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate on scroll for .main-container, .section-image-animate, .highlight, .layout-img, and .opt-list li
+        function animateOnScroll(selector, className = 'in-view') {
+            const elements = document.querySelectorAll(selector);
+            function check() {
+                const triggerBottom = window.innerHeight * 0.92;
+                let delay = 0;
+                elements.forEach((el, idx) => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < triggerBottom && !el.classList.contains(className)) {
+                        el.style.transitionDelay = (delay * 0.13) + "s";
+                        el.classList.add(className);
+                        delay++;
+                    }
+                });
+            }
+            window.addEventListener('scroll', check);
+            document.addEventListener('DOMContentLoaded', check);
+        }
+        animateOnScroll('.main-container');
+        animateOnScroll('.section-image-animate');
+        animateOnScroll('.highlight');
+        animateOnScroll('.layout-img');
+        animateOnScroll('.opt-list li');
+    </script>
 </body>
 </html>
