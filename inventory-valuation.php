@@ -191,7 +191,7 @@
                     <tfoot>
                         <tr>
                             <th colspan="6" class="text-end">Total Inventory Value</th>
-                            <th class="valuation-result">$615.00</th>
+                            <th class="valuation-result">55,500.00</th>
                         </tr>
                     </tfoot>
                 </table>
