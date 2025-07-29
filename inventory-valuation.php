@@ -108,7 +108,7 @@
     </nav>
     <!-- End Navigation -->
 
-    <div class="container" style="margin-top: 120px;">
+    <div class="container text-center" style="margin-top: 120px;">
         <!-- Section Title -->
         <div class="row mb-4">
             <div class="col-12">
