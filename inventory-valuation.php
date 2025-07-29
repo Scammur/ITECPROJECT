@@ -210,5 +210,131 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div>
+            <h1>Inventory Valuation</h1>
+            <h4>Last year's Inventory Valuation</h4>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
+        <div>
+            <h3>This week</h3>
+            <p>This is the Inventory evaluation for the week.</p>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
+        <div>
+            <h3>Last week</h3>
+            <p>This is the Inventory evaluation for last week.</p>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
+        <div>
+            <h3>This month</h3>
+            <p>This is the Inventory evaluation for the month.</p>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
+        <div>
+            <h3>Last month</h3>
+            <p>This is the Inventory evaluation for last month.</p>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
+        <div>
+            <h3>This year's Inventory Valuation</h3>
+            <!--$query = mysqli_query($"SELECT * from table");
+
+foreach($table=mysqli_fetch-array(query));
+?>
+<table>
+    <tr>
+        <td><-?-php $table['month']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['stocks']?></td>
+    </tr>
+    <tr>
+        <td><-?-php $table['prices']?></td>
+    </tr>
+</table>
+-->
+            <button>Valuation</button>
+        </div>
 </body>
 </html>
