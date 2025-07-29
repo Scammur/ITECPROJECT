@@ -14,7 +14,13 @@
     <!-- Google Fonts Inter (optional, fallback to sans-serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
@@ -63,6 +69,22 @@
             background: #fff;
             height: 100%;
             box-shadow: 0 2px 6px 0 #00000011;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .card-feature.in-view {
+            opacity: 1;
+            transform: none;
+        }
+        .section-image-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.1s cubic-bezier(0.23,1,0.32,1), transform 1.1s cubic-bezier(0.23,1,0.32,1);
+        }
+        .section-image-animate.in-view {
+            opacity: 1 !important;
+            transform: none !important;
         }
         .testimonial-avatar {
             width: 45px;
@@ -83,6 +105,15 @@
             font-size: 24px;
             font-weight: 500;
             margin-bottom: 1rem;
+        }
+        .testimonial-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .testimonial-animate.in-view {
+            opacity: 1;
+            transform: none;
         }
         .social-icons a {
             background: #fff;
@@ -137,8 +168,8 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
+                    <li class="nav-item ms-5">
+                        <a class="nav-link" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-valuation.php"><i class="fa-solid fa-coins me-1"></i>Inventory Valuation</a>
@@ -158,8 +189,8 @@
     <div class="container" style="margin-top: 120px;">
         <!-- Page Header Section -->
         <div class="row mb-5">
-            <div class="col-lg-8">
-                <div class="page-title mb-4">Inventory & Warehouse Management</div>
+            <div class="col-lg-8 animate__animated animate__fadeInLeft">
+                <div class="page-title mb-4">Inventory & Warehouse Management</div>   
                 <div class="subtitle mb-4">
                     Warehouse inventory management is a process that involves receiving, storing, and tracking inventory in a warehouse; managing warehouse staff; and optimizing storage space and costs; all of which directly impacts fulfillment, shipping, and the customer experience.
                 </div>
@@ -174,9 +205,19 @@
 
         <hr class="divider">
 
+        <div class="row mb-4 mb-5">
+            <div class="col-12 text-center">
+                <img 
+                    src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80"
+                    alt="Warehouse Overview"
+                    class="img-fluid rounded shadow section-image-animate"
+                    style="max-height:340px;object-fit:cover;">
+            </div>
+        </div>
+
         <!-- Why warehouse inventory management is important -->
         <div class="row mb-5">
-            <div class="col-lg-10">
+            <div class="col-lg-10 animate__animated animate__fadeInRight">
                 <div class="section-title mb-4">Why is warehouse inventory management important to your business?</div>
                 <div class="mb-4">
                     <div class="mb-3">
@@ -207,7 +248,7 @@
             <div class="d-flex flex-wrap justify-content-center gap-4">
                 <!-- Stock Tracking Card -->
                 <div class="card-feature" style="width:300px">
-                    <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b90dd?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Stock Tracking">
+                    <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Stock Tracking">
                     <div class="feature-title mb-2">Stock Tracking</div>
                     <div class="feature-desc mb-2">The process of monitoring inventory levels and movement within a warehouse.</div>
                 </div>
@@ -236,7 +277,7 @@
         <div class="row my-5">
             <div class="section-title mb-4">What our users say</div>
             <div class="d-flex flex-wrap gap-4">
-                <div class="card-feature" style="width:287px;">
+                <div class="card-feature testimonial-animate" style="width:287px;">
                     <div class="testimonial-quote mb-4">“Janjan dingba”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-avatar" alt="Jommel Sean B. Quilon">
@@ -246,7 +287,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-feature" style="width:287px;">
+                <div class="card-feature testimonial-animate" style="width:287px;">
                     <div class="testimonial-quote mb-4">“A fantastic bit of feedback”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-avatar" alt="Jane Doe">
@@ -256,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-feature" style="width:287px;">
+                <div class="card-feature testimonial-animate" style="width:287px;">
                     <div class="testimonial-quote mb-4">“A genuinely glowing review”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/85.jpg" class="testimonial-avatar" alt="Frank Ching">
@@ -266,7 +307,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-feature" style="width:299px;">
+                <div class="card-feature testimonial-animate" style="width:299px;">
                     <div class="testimonial-quote mb-4">“AMAZING”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/65.jpg" class="testimonial-avatar" alt="Xophia Anne Z. Herrera">
@@ -325,5 +366,28 @@
 
     <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate on scroll for .card-feature, .testimonial-animate, and .section-image-animate
+        function animateOnScroll(selector, className = 'in-view') {
+            const elements = document.querySelectorAll(selector);
+            function check() {
+                const triggerBottom = window.innerHeight * 0.92;
+                let delay = 0;
+                elements.forEach((el, idx) => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < triggerBottom && !el.classList.contains(className)) {
+                        el.style.transitionDelay = (delay * 0.13) + "s";
+                        el.classList.add(className);
+                        delay++;
+                    }
+                });
+            }
+            window.addEventListener('scroll', check);
+            document.addEventListener('DOMContentLoaded', check);
+        }
+        animateOnScroll('.card-feature');
+        animateOnScroll('.testimonial-animate');
+        animateOnScroll('.section-image-animate');
+    </script>
 </body>
 </html>
