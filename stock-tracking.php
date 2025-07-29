@@ -78,7 +78,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <i class="fa-solid fa-warehouse me-2"></i>Xophia’s Inventory & Warehouse
+                <i class="fa-solid fa-warehouse me-2 ps-4"></i>Xophia’s Inventory & Warehouse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -91,17 +91,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="inventory-valuation.php">
                             <i class="fa-solid fa-coins me-1"></i>Inventory Valuation
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="warehouse-layout-optimization.php">
                             <i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="order-picking-packing-shipping.php">
                             <i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping
                         </a>
                     </li>
