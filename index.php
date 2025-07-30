@@ -1,3 +1,4 @@
+<?php include "config/config.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,6 +155,13 @@
             border-top: 1px solid #E6E6E6;
             margin: 2rem 0;
         }
+        .navbar .nav-link .fa-bell {
+            font-size: 1.2rem;
+        }
+        .navbar .dropdown-menu {
+            font-size: 0.95rem;
+        }
+
     </style>
 </head>
 <body>
@@ -179,6 +187,44 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="order-picking-packing-shipping.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping</a>
+                    </li>
+                    <li>
+                        <div class="nav-item dropdown me-3">
+                            <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                     <?php
+                                     $quer = 'SELECT stock from stocks';
+                                     $res = mysqli_query($conn,$quer);
+                                     while($notif=mysqli_fetch_array($res)){
+                                             $quer = 'SELECT count(stock) as con from stocks where stock < 49';
+                                             $res = mysqli_query($conn,$quer);
+                                             echo mysqli_fetch_array($res)['con'];
+                                        }
+                                     ?>
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="notificationDropdown" style="min-width: 300px;">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <?php
+                                $quer = 'SELECT item, stock from stocks';
+                                $res = mysqli_query($conn,$quer);
+                                while($notif=mysqli_fetch_array($res)){
+                                    if($notif['stock'] > 0 && $notif['stock'] <=49) {
+                                        ?>
+                                        <li><a class="dropdown-item" href="stock-tracking.php">⚠️Low stock alert: <?php echo $notif['item'];?></a></li>
+                                        <?php
+                                    }elseif($notif['stock'] == 0){
+                                        ?>
+                                        <li><a class="dropdown-item" href="stock-tracking.php">⚠️No Stock alert: <?php echo $notif['item'];?></a></li>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                 <!--<hr class="dropdown-divider"></li>-->
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
