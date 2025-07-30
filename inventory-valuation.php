@@ -1,3 +1,6 @@
+<?php
+include "config/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,59 +172,35 @@
                     </thead>
                     <tbody>
                         <!-- Example rows, replace with PHP & DB integration -->
-                        <tr class="card-feature">
-                            <td>Mouse</td>
-                            <td>Electronics</td>
-                            <td>Rack 1A</td>
-                            <td>120</td>
-                            <td>350.00</td>
-                            <td>42,000.00</td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Box B</td>
-                            <td>Packaging</td>
-                            <td>Rack 2B</td>
-                            <td>12</td>
-                            <td>25.00</td>
-                            <td>300.00</td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Envelope C</td>
-                            <td>Mailers</td>
-                            <td>Rack 3C</td>
-                            <td>0</td>
-                            <td>10.00</td>
-                            <td>0.00</td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Stapler</td>
-                            <td>Stationary</td>
-                            <td>Rack 3B</td>
-                            <td>50</td>
-                            <td>100.00</td>
-                            <td>5,000.00</td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Ballpoint Pen Red</td>
-                            <td>Stationary</td>
-                            <td>Rack 3D</td>
-                            <td>600</td>
-                            <td>12.00</td>
-                            <td>7,200.00</td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Syringe 5cc</td>
-                            <td>Medical</td>
-                            <td>Rack 7A</td>
-                            <td>100</td>
-                            <td>10.00</td>
-                            <td>1000.00</td>
-                        </tr>
+                        <?php 
+                                $query = "SELECT *, concat(price * stock) as totalCost FROM stocks";
+                                $res = mysqli_query($conn, $query);
+                                while ($data = mysqli_fetch_array($res)) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $data['item']; ?></td>
+                                        <td><?php echo $data['category']; ?></td> 
+                                        <td><?php echo $data['location']; ?></td> 
+                                        <td><?php echo $data['stock']; ?></td>
+                                        <td><?php echo $data['price']; ?></td>
+                                        <td><?php echo $data['totalCost']; ?></td>
+                                    </tr>
+                                    <?php
+                                    }
+                        ?>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="6" class="text-end">Total Inventory Value</th>
-                            <th class="valuation-result">55,500.00</th>
+                            <th colspan="5" class="text-end">Total Inventory Value</th>
+                            <?php
+                                $query = "SELECT sum(price * stock) as totalval FROM stocks";
+                                $res = mysqli_query($conn, $query);
+                                while($data2 = mysqli_fetch_array($res)){
+                                    ?>
+                                    <th><?php echo $data2['totalval']?></th>
+                                    <?php
+                                }
+                            ?>
                         </tr>
                     </tfoot>
                 </table>

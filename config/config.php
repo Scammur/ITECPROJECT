@@ -1,3 +1,3 @@
 <?php
-mysqli_connect('','','','');
+$conn=mysqli_connect("localhost","root","","itec");
 ?>
