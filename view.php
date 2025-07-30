@@ -68,6 +68,15 @@ $result = mysqli_query($conn, $query);
                     <td><strong>Stock</strong></td>
                     <td><?php echo $data['stock']; ?></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <form method="POST" action="assets/request-stock.php">
+                            <input type="hidden" name="item" value="<?php echo htmlspecialchars($data['item']); ?>">
+                            <input type="hidden" name="sku" value="<?php echo htmlspecialchars($data['bar']); ?>">
+                            <button type="submit" name="reqbtn" class="btn btn-warning">REQUEST NEW STOCK</button>
+                        </form>
+                    </td>
+                </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
