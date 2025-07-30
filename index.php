@@ -255,10 +255,10 @@
         <div class="row mb-4 mb-5">
             <div class="col-12 text-center">
                 <img 
-                    src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80"
+                    src="img\index\image1.png"
                     alt="Warehouse Overview"
                     class="img-fluid rounded shadow section-image-animate"
-                    style="max-height:340px;object-fit:cover;">
+                    style="max-height:700px;object-fit:cover;">
             </div>
         </div>
 
@@ -295,25 +295,25 @@
             <div class="d-flex flex-wrap justify-content-center gap-4">
                 <!-- Stock Tracking Card -->
                 <div class="card-feature" style="width:300px">
-                    <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Stock Tracking">
+                    <img src="img\index\image2.png" class="img-fluid rounded mb-3" alt="Stock Tracking">
                     <div class="feature-title mb-2">Stock Tracking</div>
                     <div class="feature-desc mb-2">The process of monitoring inventory levels and movement within a warehouse.</div>
                 </div>
                 <!-- Inventory Valuation Card -->
                 <div class="card-feature" style="width:300px">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Inventory Valuation">
+                    <img src="img\index\image3.png" class="img-fluid rounded mb-3" alt="Inventory Valuation">
                     <div class="feature-title mb-2">Inventory Valuation</div>
                     <div class="feature-desc mb-2">Provides accurate financial insights for pricing, reporting, and tax compliance.</div>
                 </div>
                 <!-- Warehouse Layout Card -->
                 <div class="card-feature" style="width:300px">
-                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Warehouse Layout">
+                    <img src="img\index\image4.png" class="img-fluid rounded mb-3" alt="Warehouse Layout">
                     <div class="feature-title mb-2">Warehouse Layout & Optimization</div>
                     <div class="feature-desc mb-2">Maximizes space and speeds up order fulfillment through smarter organization.</div>
                 </div>
                 <!-- Order Picking Card -->
                 <div class="card-feature" style="width:300px">
-                    <img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=300&q=80" class="img-fluid rounded mb-3" alt="Order Picking">
+                    <img src="img\index\image5.png" class="img-fluid rounded mb-3" alt="Order Picking">
                     <div class="feature-title mb-2">Order Picking, Packing & Shipping</div>
                     <div class="feature-desc mb-2">Ensures fast, accurate, and cost-efficient delivery to boost customer satisfaction.</div>
                 </div>
@@ -405,7 +405,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                &copy; <?php echo date("Y"); ?> Xophia’s Inventory & Warehouse Management
+                &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
         </div>
     </footer>

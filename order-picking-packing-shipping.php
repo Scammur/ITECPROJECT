@@ -5,7 +5,7 @@ include 'config/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Picking, Packing & Shipping | Xophia’s Inventory & Warehouse</title>
+    <title>Order Picking, Packing & Shipping | Inventory & Warehouse Management</title>
     <link rel="icon" href="img/ico/logo.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -129,33 +129,25 @@ include 'config/config.php';
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container-fluid">
-            <a class="navbar-brand ps-3" href="index.php">
-                <i class="fa-solid fa-warehouse me-2"></i>Inventory & Warehouse Management
+            <a class="navbar-brand ps-4" href="index.php">
+              <i class="fa-solid fa-warehouse me-2"></i>Inventory & Warehouse Management
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="stock-tracking.php">
-                            <i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking
-                        </a>
+                    <li class="nav-item ms-5">
+                        <a class="nav-link" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="inventory-valuation.php">
-                            <i class="fa-solid fa-coins me-1"></i>Inventory Valuation
-                        </a>
+                        <a class="nav-link" href="inventory-valuation.php"><i class="fa-solid fa-coins me-1"></i>Inventory Valuation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="warehouse-layout-optimization.php">
-                            <i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization
-                        </a>
+                        <a class="nav-link" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="order-picking-packing-shipping.php">
-                            <i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping
-                        </a>
+                        <a class="nav-link" href="order-picking-packing-shipping.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping</a>
                     </li>
                     <li>
                         <div class="nav-item dropdown me-3">
@@ -163,7 +155,7 @@ include 'config/config.php';
                                 <i class="fa-solid fa-bell"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                      <?php
-                                      $quer = 'SELECT stock from stocks';
+                                     $quer = 'SELECT stock from stocks';
                                      $res = mysqli_query($conn,$quer);
                                      while($notif=mysqli_fetch_array($res)){
                                              $quer = 'SELECT count(stock) as con from stocks where stock < 49';
@@ -297,7 +289,7 @@ include 'config/config.php';
     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
             <div class="text-center">
-                &copy; <?php echo date("Y"); ?> Xophia’s Inventory & Warehouse Management
+                &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
         </div>
     </footer>
