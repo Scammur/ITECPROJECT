@@ -1,0 +1,18 @@
+<td>
+                                <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+
+
+out of stock
+
+<td><span class="stock-status out-stock"><i class="fa-solid fa-xmark-circle"></i> Out of Stock</span></td>
+
+low stock
+
+<td><span class="stock-status low-stock"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock</span></td>
+
+in stock
+
+<td><span class="stock-status in-stock"><i class="fa-solid fa-circle"></i> In Stock</span></td>

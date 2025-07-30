@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2025 at 05:35 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jul 30, 2025 at 05:25 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,24 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lastyear`
+-- Table structure for table `stocks`
 --
 
-CREATE TABLE `lastyear` (
-  `id` int(255) NOT NULL,
-  `month` varchar(11) NOT NULL,
-  `stocks` varchar(11) NOT NULL,
-  `prices` int(255) NOT NULL
+CREATE TABLE `stocks` (
+  `item` varchar(100) NOT NULL,
+  `bar` varchar(255) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `price` float(255,2) NOT NULL,
+  `id` int(10) NOT NULL,
+  `stock` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stocks`
+--
+
+INSERT INTO `stocks` (`item`, `bar`, `category`, `location`, `price`, `id`, `stock`) VALUES
+('MOUSE', 'SKU-401', 'ELECTRONICS', 'RACK 1A', 120.00, 1, 193),
+('keyboard', 'SKU-402', 'ELECTRONICS', 'RACK 1A', 400.00, 2, 120),
+('cpu', 'SKU-403', 'ELECTRONICS', 'RACK 1-A', 6000.00, 3, 356),
+('headset', 'SKU-406', 'ELECTRONICS', 'RACK 1-A', 800.00, 4, 359),
+('DOOR', 'SKU-303', 'APPLIANCES', 'RACK 2A', 4300.00, 5, 700),
+('door knob', 'SKU-304', 'APPLIANCES', 'RACK 2A', 500.00, 6, 5),
+('WINDOW', 'SKU-305', 'APPLIANCES', 'RACK 2A', 2300.00, 7, 5);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `lastyear`
+-- Indexes for table `stocks`
 --
-ALTER TABLE `lastyear`
+ALTER TABLE `stocks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -49,10 +65,10 @@ ALTER TABLE `lastyear`
 --
 
 --
--- AUTO_INCREMENT for table `lastyear`
+-- AUTO_INCREMENT for table `stocks`
 --
-ALTER TABLE `lastyear`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `stocks`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

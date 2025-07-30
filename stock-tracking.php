@@ -1,3 +1,5 @@
+<?php include "config/config.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,7 +144,13 @@
     <!-- End Navigation -->
 
     <div class="container" style="margin-top: 120px;">
-        <!-- Section Title -->
+        <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Item successfully deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <?php endif; ?>
+
         <div class="row mb-4">
             <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2"><i class="fa-solid fa-cubes-stacked me-2"></i>Stock Tracking</div>
@@ -156,9 +164,10 @@
         <div class="main-container section-image-animate">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>Current Stock Levels</h4>
-                <a href="#" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">
                     <i class="fa fa-plus"></i> Add New Item
-                </a>
+                </button>
+
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered align-middle">
@@ -174,47 +183,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example rows, replace with PHP & DB integration -->
-                        <tr class="card-feature">
-                            <td>Widget A</td>
-                            <td>SKU-001</td>
-                            <td>Electronics</td>
-                            <td>Rack 1A</td>
-                            <td>120</td>
-                            <td><span class="stock-status in-stock"><i class="fa-solid fa-circle"></i> In Stock</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                        <?php
+                        $quer="SELECT * FROM stocks";
+                        $res=mysqli_query($conn,$quer);
+                        while($data = mysqli_fetch_array($res)){
+                            ?>
+                            <tr>
+                                <td><?php echo $data['item']?></td>
+                                <td><?php echo $data['bar']?></td>
+                                <td><?php echo $data['category']?></td>
+                                <td><?php echo $data['location']?></td>
+                                <td><?php echo $data['stock']?></td>
+                                <td><?php
+                                if($data['stock'] == 0){
+                                    echo '<span class="stock-status out-stock"><i class="fa-solid fa-xmark-circle"></i> Out of Stock</span>';
+                                }elseif($data['stock'] > 50){
+                                    echo '<span class="stock-status in-stock"><i class="fa-solid fa-circle"></i> In Stock</span>';
+                                }else{
+                                    echo '<span class="stock-status low-stock"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock</span>';
+                                }
+                                ?></td>
+                                <td>
+                                <a href="view.php?barcode=<?php echo $data['bar'];?>" class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></a>
+                                <a href="edit.php?barcode=<?php echo $data['bar'];?>" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit"></i></a>
+                                <a href="delete.php?barcode=<?php echo $data['bar']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
+
                             </td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Box B</td>
-                            <td>SKU-002</td>
-                            <td>Packaging</td>
-                            <td>Rack 2B</td>
-                            <td>12</td>
-                            <td><span class="stock-status low-stock"><i class="fa-solid fa-triangle-exclamation"></i> Low Stock</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr class="card-feature">
-                            <td>Envelope C</td>
-                            <td>SKU-003</td>
-                            <td>Mailers</td>
-                            <td>Rack 3C</td>
-                            <td>0</td>
-                            <td><span class="stock-status out-stock"><i class="fa-solid fa-xmark-circle"></i> Out of Stock</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-outline-info"><i class="fa fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit"></i></a>
-                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <!-- Add more example rows as needed -->
+                            </tr>
+                            <?php
+                        } 
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -255,5 +253,48 @@
         animateOnScroll('.card-feature');
         animateOnScroll('.section-image-animate');
     </script>
+    <!-- Add Item Modal -->
+<div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="assets/stockadd.php">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addItemModalLabel">Add New Stock Item</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="item" class="form-label">Item Name</label>
+            <input type="text" class="form-control" name="item" required>
+          </div>
+          <div class="mb-3">
+            <label for="sku" class="form-label">SKU</label>
+            <input type="text" class="form-control" name="sku" required>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" class="form-control" name="category" required>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" name="location" required>
+          </div>
+          <div class="mb-3">
+            <label for="stock" class="form-label">Stock Quantity</label>
+            <input type="number" class="form-control" name="stock" required>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" class="form-control" name="price" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="addItem" class="btn btn-success">Add Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
