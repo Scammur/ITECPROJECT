@@ -1,3 +1,3 @@
 <?php
-$conn=mysqli_connect("localhost","root","","itec");
+$conn=mysqli_connect("localhost","root","","itc");
 ?>

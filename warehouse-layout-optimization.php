@@ -447,21 +447,26 @@
                     </li>
                     <li>
                         <div class="nav-item dropdown me-3">
-                            <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false" onclick="markNotificationsSeen()">
                                 <i class="fa-solid fa-bell"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                     <?php
-                                     $quer = 'SELECT stock from stocks';
-                                     $res = mysqli_query($conn,$quer);
-                                     while($notif=mysqli_fetch_array($res)){
-                                             $quer = 'SELECT count(stock) as con from stocks where stock < 49';
-                                             $res = mysqli_query($conn,$quer);
-                                             echo mysqli_fetch_array($res)['con'];
-                                        }
-                                     ?>
+                                    <?php
+                                    $query = "SELECT COUNT(*) as con FROM stocks WHERE stock < 49 AND notified = 0";
+                                    $result = mysqli_query($conn, $query);
+                                    echo mysqli_fetch_array($result)['con'];
+                                    ?>
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </a>
+                             <script>
+                                function markNotificationsSeen() {
+                                    fetch('assets/msee.php', {
+                                        method: 'POST'
+                                    }).then(() => {
+                                        document.querySelector('.badge').textContent = '0';
+                                    });
+                                }
+                            </script>
                             <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="notificationDropdown" style="min-width: 300px;">
                                 <li><h6 class="dropdown-header">Notifications</h6></li>
                                 <?php
