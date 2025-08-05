@@ -247,7 +247,7 @@ include "config/config.php";
     <!-- Footer -->
     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
-            <div class="row text-center mt-4">
+            <div class="text-center mt-4">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
         </div>
@@ -281,5 +281,6 @@ include "config/config.php";
 </body>
 
 </html>
+
 
 
