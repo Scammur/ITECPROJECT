@@ -330,7 +330,7 @@
             <div class="section-title mb-4">What our users say</div>
             <div class="d-flex flex-wrap gap-4">
                 <div class="card-feature testimonial-animate" style="width:287px;">
-                    <div class="testimonial-quote mb-4">“Janjan dingba”</div>
+                    <div class="testimonial-quote mb-4">“Very efficient, very demure.”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-avatar" alt="Jommel Sean B. Quilon">
                         <div>
@@ -340,21 +340,21 @@
                     </div>
                 </div>
                 <div class="card-feature testimonial-animate" style="width:287px;">
-                    <div class="testimonial-quote mb-4">“A fantastic bit of feedback”</div>
+                    <div class="testimonial-quote mb-4">“Great experience.”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-avatar" alt="Jane Doe">
                         <div>
-                            <div class="testimonial-name">Jane Doe</div>
-                            <div class="testimonial-role">Logistics Supervisor</div>
+                            <div class="testimonial-name">John Reignel Apolista</div>
+                            <div class="testimonial-role">Stock Tracking Director</div>
                         </div>
                     </div>
                 </div>
                 <div class="card-feature testimonial-animate" style="width:287px;">
-                    <div class="testimonial-quote mb-4">“A genuinely glowing review”</div>
+                    <div class="testimonial-quote mb-4">“10/10”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/85.jpg" class="testimonial-avatar" alt="Frank Ching">
                         <div>
-                            <div class="testimonial-name">Frank Ching</div>
+                            <div class="testimonial-name">Xophia Anne Z. Herrera</div>
                             <div class="testimonial-role">Inventory Analyst</div>
                         </div>
                     </div>
@@ -364,8 +364,8 @@
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/women/65.jpg" class="testimonial-avatar" alt="Xophia Anne Z. Herrera">
                         <div>
-                            <div class="testimonial-name">Xophia Anne Z. Herrera</div>
-                            <div class="testimonial-role">Daga</div>
+                            <div class="testimonial-name">Zeill Andrew Vista</div>
+                            <div class="testimonial-role">Order Fulfillment </div>
                         </div>
                     </div>
                 </div>
@@ -443,3 +443,4 @@
     </script>
 </body>
 </html>
+
