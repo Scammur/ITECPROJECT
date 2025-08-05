@@ -70,7 +70,7 @@
         }
         .main-container {
             margin: 2em auto;
-            max-width: 1100px;
+            max-width: 2000px;
             background: #fff;
             padding: 2em;
             border-radius: 8px;
@@ -289,11 +289,11 @@
         animateOnScroll('.card-feature');
         animateOnScroll('.section-image-animate');
     </script>
-    <!-- Add Item Modal -->
+<!-- Add Item Modal -->
 <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="assets/stockadd.php">
+      <form method="POST" action="assets/stockadd.php" id="addItemForm">
         <div class="modal-header">
           <h5 class="modal-title" id="addItemModalLabel">Add New Stock Item</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -305,15 +305,59 @@
           </div>
           <div class="mb-3">
             <label for="sku" class="form-label">SKU</label>
-            <input type="text" class="form-control" name="sku" required>
+            <input type="text" class="form-control" name="sku" id="skuInput" required>
+            <div class="invalid-feedback" id="skuFeedback">This SKU already exists</div>
           </div>
           <div class="mb-3">
             <label for="category" class="form-label">Category</label>
-            <input type="text" class="form-control" name="category" required>
+            <select class="form-select" name="category" required>
+              <option value="" selected disabled>Select a category</option>
+              <option value="Consumer Electronics">Consumer Electronics</option>
+              <option value="Computer Hardware & Peripherals">Computer Hardware & Peripherals</option>
+              <option value="Home Appliances">Home Appliances</option>
+              <option value="Industrial & Power Electronics">Industrial & Power Electronics</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" name="location" required>
+            <select class="form-select" name="location" required>
+              <option value="" selected disabled>Select a location</option>
+              <option value="RACK 1A">A1</option>
+              <option value="RACK 2A">A2</option>
+              <option value="RACK 3A">A3</option>
+              <option value="RACK 4A">A4</option>
+              <option value="RACK 5A">A5</option>
+              <option value="RACK 6A">A6</option>
+              <option value="RACK 7A">A7</option>
+              <option value="RACK 1B">B1</option>
+              <option value="RACK 2B">B2</option>
+              <option value="RACK 3B">B3</option>
+              <option value="RACK 4B">B4</option>
+              <option value="RACK 5B">B5</option>
+              <option value="RACK 6B">B6</option>
+              <option value="RACK 7B">B7</option>
+              <option value="RACK 1C">C1</option>
+              <option value="RACK 2C">C2</option>
+              <option value="RACK 3C">C3</option>
+              <option value="RACK 4C">C4</option>
+              <option value="RACK 5C">C5</option>
+              <option value="RACK 6C">C6</option>
+              <option value="RACK 7C">C7</option>
+              <option value="RACK 1D">D1</option>
+              <option value="RACK 2D">D2</option>
+              <option value="RACK 3D">D3</option>
+              <option value="RACK 4D">D4</option>
+              <option value="RACK 5D">D5</option>
+              <option value="RACK 6D">D6</option>
+              <option value="RACK 7D">D7</option>
+              <option value="RACK 1E">E1</option>
+              <option value="RACK 2E">E2</option>
+              <option value="RACK 3E">E3</option>
+              <option value="RACK 4E">E4</option>
+              <option value="RACK 5E">E5</option>
+              <option value="RACK 6E">E6</option>
+              <option value="RACK 7E">E7</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="stock" class="form-label">Stock Quantity</label>
@@ -325,12 +369,52 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" name="addItem" class="btn btn-success">Add Item</button>
+          <button type="submit" name="addItem" class="btn btn-success" id="submitBtn">Add Item</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const skuInput = document.getElementById('skuInput');
+  const skuFeedback = document.getElementById('skuFeedback');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('addItemForm');
+  
+  // Check SKU uniqueness on input change
+  skuInput.addEventListener('change', function() {
+    checkSKU(this.value);
+  });
+  
+  // Prevent form submission if SKU exists
+  form.addEventListener('submit', function(e) {
+    if (skuInput.classList.contains('is-invalid')) {
+      e.preventDefault();
+      skuFeedback.style.display = 'block';
+    }
+  });
+  
+  function checkSKU(sku) {
+    if (!sku) return;
+    
+    fetch('check_sku.php?sku=' + encodeURIComponent(sku))
+      .then(response => response.json())
+      .then(data => {
+        if (data.exists) {
+          skuInput.classList.add('is-invalid');
+          skuFeedback.style.display = 'block';
+          submitBtn.disabled = true;
+        } else {
+          skuInput.classList.remove('is-invalid');
+          skuFeedback.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      });
+  }
+});
+</script>
 
 </body>
 </html>
