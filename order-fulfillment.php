@@ -30,7 +30,7 @@ include 'config/config.php';
             background: #f4f4f4;
             color: #000;
         }
-        .footer {
+        footer {
            position: fixed;
            left: 0;
            bottom: 0;
@@ -302,6 +302,7 @@ include 'config/config.php';
     </script>
 </body>
 </html>
+
 
 
 
