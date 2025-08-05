@@ -187,7 +187,7 @@
                         <a class="nav-link" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order-picking-packing-shipping.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping</a>
+                        <a class="nav-link" href="order-fulfillment.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping</a>
                     </li>
                     <li>
                         <div class="nav-item dropdown me-3">
@@ -443,4 +443,5 @@
     </script>
 </body>
 </html>
+
 
