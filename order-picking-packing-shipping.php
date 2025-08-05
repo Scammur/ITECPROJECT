@@ -5,7 +5,7 @@ include 'config/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Picking, Packing & Shipping | Inventory & Warehouse Management</title>
+    <title>Order Fulfillment | Inventory & Warehouse Management</title>
     <link rel="icon" href="img/ico/logo.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -203,92 +203,56 @@ include 'config/config.php';
         <div class="row mb-4">
             <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2">
-                    <i class="fa-solid fa-truck-ramp-box me-2"></i>Order Picking, Packing & Shipping
+                    <i class="fa-solid fa-truck-ramp-box me-2"></i>Order Fulfillment
                 </div>
                 <p class="lead">
-                    Ensure fast, accurate, and cost-efficient delivery by optimizing your picking, packing, and shipping processes.
+                    Track and manage orders.
                 </p>
             </div>
         </div>
         <hr class="divider">
 
-        <!-- Content -->
-        <div class="main-container">
-            <div class="highlight d-flex align-items-center">
-                <i class="fa-solid fa-bolt process-icon"></i>
-                <div>
-                    <strong>Tip:</strong> Use barcode scanning and digital pick lists to minimize errors and speed up order fulfillment!
-                </div>
-            </div>
-
-            <h4 class="mb-3">Core Processes</h4>
-            <div class="process-step d-flex align-items-start">
-                <span class="process-icon"><i class="fa-solid fa-person-walking"></i></span>
-                <div>
-                    <strong>1. Picking:</strong> Locating and collecting items from warehouse shelves based on order details. Efficient picking reduces fulfillment times and errors.
-                </div>
-            </div>
-            <div class="process-step d-flex align-items-start">
-                <span class="process-icon"><i class="fa-solid fa-box-open"></i></span>
-                <div>
-                    <strong>2. Packing:</strong> Carefully packaging picked items for shipment, ensuring protection and accuracy. Use the right sized packaging and protective material.
-                </div>
-            </div>
-            <div class="process-step d-flex align-items-start">
-                <span class="process-icon"><i class="fa-solid fa-truck"></i></span>
-                <div>
-                    <strong>3. Shipping:</strong> Dispatching packed orders to customers using reliable carriers. Timely shipping is key to customer satisfaction.
-                </div>
-            </div>
-
-            <h5 class="mb-3 mt-5">Order Fulfillment Example</h5>
+            <h5 class="mb-3 mt-5">Order Fulfillment</h5>
             <div class="table-responsive mb-4">
                 <table class="table table-bordered align-middle example-table">
                     <thead>
                         <tr>
                             <th>Order #</th>
-                            <th>Customer</th>
+                            <td>Date Ordered</td>
                             <th>Items</th>
-                            <th>Pick Status</th>
-                            <th>Packing Status</th>
+                            <th>Order Status</th>
                             <th>Shipping Status</th>
+                            <td>Date Received</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>#1001</td>
-                            <td>Jane Smith</td>
+                            <td>03/08/25</td>
                             <td>Widget A x2, Box B x1</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i> Picked</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i> Packed</td>
-                            <td class="text-warning"><i class="fa-solid fa-clock"></i> Awaiting Shipment</td>
+                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Confirmed</td>
+                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Delivered</td>
+                            <td class="text-success"><i class="fa-solid fa-clock"></i>04/01/25</td>
                         </tr>
                         <tr>
                             <td>#1002</td>
-                            <td>John Doe</td>
-                            <td>Envelope C x3</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i> Picked</td>
-                            <td class="text-danger"><i class="fa-solid fa-times-circle"></i> Not Packed</td>
-                            <td class="text-secondary"><i class="fa-solid fa-minus-circle"></i> Pending</td>
+                            <td>04/02/25</td>
+                            <td>Mouse C x3</td>
+                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Confirmed</td>
+                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Packed</td>
+                            <td class="text-secondary"><i class="fa-solid fa-minus-circle"></i>Pending</td>
                         </tr>
                         <tr>
                             <td>#1003</td>
-                            <td>Alice Lee</td>
-                            <td>Widget A x1</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i> Picked</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i> Packed</td>
-                            <td class="text-success"><i class="fa-solid fa-truck"></i> Shipped</td>
+                            <td>04/03/25</td>
+                            <td>Keyboard B x10</td>
+                            <td class="text-danger"><i class="fa-solid fa-times-circle"></i>Cancelled</td>
+                            <td class="text-danger"><i class="fa-solid fa-times-circle"></i>N/A</td>
+                            <td class="text-danger"><i class="fa-solid fa-truck"></i>N/A</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <div class="alert alert-info mt-4 section-image-animate">
-                <i class="fa-solid fa-circle-info me-2"></i>
-                Streamlining picking, packing, and shipping leads to happier customers and greater warehouse efficiency!
-            </div>
-        </div>
-    </div>
+            </div>       
 
     <!-- Footer -->
     <footer class="bg-light text-dark py-5 mt-5">
