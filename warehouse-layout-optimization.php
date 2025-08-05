@@ -23,7 +23,7 @@
             --info: #0dcaf0;
         }
         
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; }F
         body { font-family: 'Inter', Arial, sans-serif; background: #f4f4f4; }
         
         .navbar { background: #000 !important; }
@@ -142,7 +142,7 @@
                         <a class="nav-link active" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order-fulfillment.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Fulfillment</a>
+                        <a class="nav-link" href="order-picking-packing-shipping.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Picking, Packing & Shipping</a>
                     </li>
                     <li>
                         <div class="nav-item dropdown me-3">
@@ -214,16 +214,10 @@
             <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
                 <?php 
                 $categories = [
-                    ['name' => 'Electronics', 'color' => 'linear-gradient(135deg, #4facfe, #00f2fe)'],
-                    ['name' => 'Tools & Hardware', 'color' => 'linear-gradient(135deg, #5a67d8, #9f7aea)'],
+                    ['name' => 'Consumer Electronics', 'color' => 'linear-gradient(135deg, #4facfe, #00f2fe)'],
+                    ['name' => 'Computer Hardware & Peripherals', 'color' => 'linear-gradient(135deg, #5a67d8, #9f7aea)'],
                     ['name' => 'Home Appliances', 'color' => 'linear-gradient(135deg, #ff6b6b, #ff9a9e)'],
-                    ['name' => 'Furniture', 'color' => 'linear-gradient(135deg, #48bb78, #81e6d9)'],
-                    ['name' => 'Health & Personal Care', 'color' => 'linear-gradient(135deg, #ed64a6, #fbb6ce)'],
-                    ['name' => 'Cleaning & Janitorial', 'color' => 'linear-gradient(135deg, #a0aec0, #cbd5e0)'],
-                    ['name' => 'Packaging & Shipping', 'color' => 'linear-gradient(135deg, #f6ad55, #fbd38d)'],
-                    ['name' => 'Office & Stationery', 'color' => 'linear-gradient(135deg, #4299e1, #90cdf4)'],
-                    ['name' => 'Food & Beverages', 'color' => 'linear-gradient(135deg, #9f7aea, #d6bcfa)'],
-                    ['name' => 'Automotive Parts', 'color' => 'linear-gradient(135deg, #e53e3e, #fc8181)'],
+                    ['name' => 'Industrial & Power Electronics', 'color' => 'linear-gradient(135deg, #48bb78, #81e6d9)'],
                     ['name' => 'Aisle', 'color' => '#f0f0f0', 'border' => '1px dashed #bbb'],
                     ['name' => 'Unloading Dock', 'color' => 'linear-gradient(135deg, #4CAF50, #8BC34A)'],
                     ['name' => 'Loading Dock', 'color' => 'linear-gradient(135deg, #FF9800, #FFC107)']
@@ -377,170 +371,171 @@
         }
         animateOnScroll('.fade-in-element');
         
-        // Warehouse Map Generation
-        document.addEventListener('DOMContentLoaded', function() {
-            const warehouseMap = document.getElementById('warehouseMap');
-            const tooltip = document.getElementById('shelfTooltip');
+    // Warehouse Map Generation
+    document.addEventListener('DOMContentLoaded', function() {
+        const warehouseMap = document.getElementById('warehouseMap');
+        const tooltip = document.getElementById('shelfTooltip');
+        
+        // Enhanced warehouse layout data
+        const layout = [
+            ['A1', 'A1', 'aisle', 'B1', 'B1', 'aisle', 'C1', 'C1', 'aisle', 'D1', 'D1', 'aisle', 'E1', 'E1'],
+            ['A2', 'A2', 'aisle', 'B2', 'B2', 'aisle', 'C2', 'C2', 'aisle', 'D2', 'D2', 'aisle', 'E2', 'E2'],
+            ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
+            ['A3', 'A3', 'aisle', 'B3', 'B3', 'aisle', 'C3', 'C3', 'aisle', 'D3', 'D3', 'aisle', 'E3', 'E3'],
+            ['A4', 'A4', 'aisle', 'B4', 'B4', 'aisle', 'C4', 'C4', 'aisle', 'D4', 'D4', 'aisle', 'E4', 'E4'],
+            ['A5', 'A5', 'aisle', 'B5', 'B5', 'aisle', 'C5', 'C5', 'aisle', 'D5', 'D5', 'aisle', 'E5', 'E5'],
+            ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
+            ['A6', 'A6', 'aisle', 'B6', 'B6', 'aisle', 'C6', 'C6', 'aisle', 'D6', 'D6', 'aisle', 'E6', 'E6'],
+            ['A7', 'A7', 'aisle', 'B7', 'B7', 'aisle', 'C7', 'C7', 'aisle', 'D7', 'D7', 'aisle', 'E7', 'E7'],
+            ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
+            ['unloading', 'unloading', 'aisle', 'loading', 'loading', 'aisle', 'exit', 'exit', 'aisle', 'loading', 'loading', 'aisle', 'unloading', 'unloading'],
+        ];
+        
+        // Database items from PHP (converted to JSON)
+        const dbItems = <?= json_encode($itemsByLocation) ?>;
+        
+        // Map database locations to our shelf identifiers
+        const locationMap = {
+            'RACK 1A': 'A1', 'RACK 2A': 'A2', 'RACK 3A': 'A3', 'RACK 4A': 'A4', 
+            'RACK 5A': 'A5', 'RACK 6A': 'A6', 'RACK 7A': 'A7', 'RACK 1B': 'B1', 'RACK 2B': 'B2', 
+            'RACK 3B': 'B3', 'RACK 4B': 'B4', 'RACK 5B': 'B5', 'RACK 6B': 'B6', 'RACK 7B': 'B7', 
+            'RACK 1C': 'C1', 'RACK 2C': 'C2', 'RACK 3C': 'C3', 'RACK 4C': 'C4', 'RACK 5C': 'C5', 
+            'RACK 6C': 'C6', 'RACK 7C': 'C7', 'RACK 1D': 'D1', 'RACK 2D': 'D2', 'RACK 3D': 'D3', 
+            'RACK 4D': 'D4', 'RACK 5D': 'D5', 'RACK 6D': 'D6', 'RACK 7D': 'D7', 'RACK 1E': 'E1', 
+            'RACK 2E': 'E2', 'RACK 3E': 'E3', 'RACK 4E': 'E4', 'RACK 5E': 'E5', 'RACK 6E': 'E6', 
+            'RACK 7E': 'E7'
+        };
+        
+        // Map categories to shelf colors - matching the PHP legend exactly
+        const categoryColors = {
+            'Consumer Electronics': 'linear-gradient(135deg, #4facfe, #00f2fe)',
+            'Computer Hardware & Peripherals': 'linear-gradient(135deg, #5a67d8, #9f7aea)',
+            'Home Appliances': 'linear-gradient(135deg, #ff6b6b, #ff9a9e)',
+            'Industrial & Power Electronics': 'linear-gradient(135deg, #48bb78, #81e6d9)',
+            'Other': 'linear-gradient(135deg, #6c757d, #adb5bd)' // Default color for other categories
+        };
+        
+        // Create shelf items object
+        const shelfItems = {};
+        
+        // Map database items to our shelf identifiers
+        for (const [location, items] of Object.entries(dbItems)) {
+            const shelfCode = locationMap[location] || location;
+            const category = items[0]?.category || 'Other'; // Use the first item's category for the whole shelf
             
-            // Enhanced warehouse layout data
-            const layout = [
-                ['A1', 'A1', 'aisle', 'B1', 'B1', 'aisle', 'C1', 'C1', 'aisle', 'D1', 'D1', 'aisle', 'E1', 'E1'],
-                ['A2', 'A2', 'aisle', 'B2', 'B2', 'aisle', 'C2', 'C2', 'aisle', 'D2', 'D2', 'aisle', 'E2', 'E2'],
-                ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
-                ['A3', 'A3', 'aisle', 'B3', 'B3', 'aisle', 'C3', 'C3', 'aisle', 'D3', 'D3', 'aisle', 'E3', 'E3'],
-                ['A4', 'A4', 'aisle', 'B4', 'B4', 'aisle', 'C4', 'C4', 'aisle', 'D4', 'D4', 'aisle', 'E4', 'E4'],
-                ['A5', 'A5', 'aisle', 'B5', 'B5', 'aisle', 'C5', 'C5', 'aisle', 'D5', 'D5', 'aisle', 'E5', 'E5'],
-                ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
-                ['A6', 'A6', 'aisle', 'B6', 'B6', 'aisle', 'C6', 'C6', 'aisle', 'D6', 'D6', 'aisle', 'E6', 'E6'],
-                ['A7', 'A7', 'aisle', 'B7', 'B7', 'aisle', 'C7', 'C7', 'aisle', 'D7', 'D7', 'aisle', 'E7', 'E7'],
-                ['aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle', 'aisle'],
-                ['unloading', 'unloading', 'aisle', 'loading', 'loading', 'aisle', 'exit', 'exit', 'aisle', 'loading', 'loading', 'aisle', 'unloading', 'unloading'],
-            ];
+            // Find the matching color for this category
+            let shelfColor = categoryColors['Other']; // Default color
             
-            // Database items from PHP (converted to JSON)
-            const dbItems = <?= json_encode($itemsByLocation) ?>;
-            
-            // Map database locations to our shelf identifiers
-            const locationMap = {
-                'RACK 1A': 'A1', 'RACK 1-A': 'A1', 'RACK 2A': 'A2', 'RACK 3A': 'A3', 'RACK 4A': 'A4', 
-                'RACK 5A': 'A5', 'RACK 6A': 'A6', 'RACK 7A': 'A7', 'RACK 1B': 'B1', 'RACK 2B': 'B2', 
-                'RACK 3B': 'B3', 'RACK 4B': 'B4', 'RACK 5B': 'B5', 'RACK 6B': 'B6', 'RACK 7B': 'B7', 
-                'RACK 1C': 'C1', 'RACK 2C': 'C2', 'RACK 3C': 'C3', 'RACK 4C': 'C4', 'RACK 5C': 'C5', 
-                'RACK 6C': 'C6', 'RACK 7C': 'C7', 'RACK 1D': 'D1', 'RACK 2D': 'D2', 'RACK 3D': 'D3', 
-                'RACK 4D': 'D4', 'RACK 5D': 'D5', 'RACK 6D': 'D6', 'RACK 7D': 'D7', 'RACK 1E': 'E1', 
-                'RACK 2E': 'E2', 'RACK 3E': 'E3', 'RACK 4E': 'E4', 'RACK 5E': 'E5', 'RACK 6E': 'E6', 
-                'RACK 7E': 'E7'
-            };
-            
-            // Map categories to shelf types
-            const categoryColors = {
-                'ELECTRONICS': 'linear-gradient(135deg, #4facfe, #00f2fe)',
-                'TOOLS & HARDWARE': 'linear-gradient(135deg, #5a67d8, #9f7aea)',
-                'HOME APPLIANCES': 'linear-gradient(135deg, #ff6b6b, #ff9a9e)',
-                'FURNITURE': 'linear-gradient(135deg, #48bb78, #81e6d9)',
-                'HEALTH & PERSONAL CARE': 'linear-gradient(135deg, #ed64a6, #fbb6ce)',
-                'CLEANING & JANITORIAL SUPPLIES': 'linear-gradient(135deg, #a0aec0, #cbd5e0)',
-                'PACKAGING & SHIPPING': 'linear-gradient(135deg, #f6ad55, #fbd38d)',
-                'OFFICE & STATIONERY': 'linear-gradient(135deg, #4299e1, #90cdf4)',
-                'FOOD & BEVERAGES': 'linear-gradient(135deg, #9f7aea, #d6bcfa)',
-                'AUTOMOTIVE & SPARE PARTS': 'linear-gradient(135deg, #e53e3e, #fc8181)',
-                'CLOTHING & APPAREL': 'linear-gradient(135deg, #dd6b20, #f6ad55)',
-                'FOOTWEAR': 'linear-gradient(135deg, #b7791f, #ecc94b)',
-                'TOYS & GAMES': 'linear-gradient(135deg, #38a169, #68d391)',
-                'SPORTS & FITNESS EQUIPMENT': 'linear-gradient(135deg, #0987a0, #00b5d8)',
-                'BOOKS & MEDIA': 'linear-gradient(135deg, #805ad5, #b794f4)',
-                'INDUSTRIAL EQUIPMENT': 'linear-gradient(135deg, #4a5568, #718096)',
-                'ELECTRICAL COMPONENTS': 'linear-gradient(135deg, #2b6cb0, #63b3ed)',
-                'PLUMBING SUPPLIES': 'linear-gradient(135deg, #319795, #4fd1c5)',
-                'GARDEN & OUTDOOR': 'linear-gradient(135deg, #276749, #48bb78)',
-                'SAFETY & SECURITY EQUIPMENT': 'linear-gradient(135deg, #9c4221, #dd6b20)'
-            };
-            
-            // Create shelf items object
-            const shelfItems = {};
-            
-            // Map database items to our shelf identifiers
-            for (const [location, items] of Object.entries(dbItems)) {
-                const shelfCode = locationMap[location] || location;
-                const category = items[0]?.category?.toUpperCase() || 'OTHER';
-                const shelfColor = categoryColors[category] || 'linear-gradient(135deg, #6c757d, #adb5bd)';
-                
-                if (!shelfItems[shelfCode]) {
-                    shelfItems[shelfCode] = {
-                        items: [],
-                        color: shelfColor
-                    };
+            // Check each category key to see if it matches (case insensitive)
+            for (const [catName, color] of Object.entries(categoryColors)) {
+                if (category.toLowerCase().includes(catName.toLowerCase())) {
+                    shelfColor = color;
+                    break;
                 }
-                
-                items.forEach(item => {
-                    shelfItems[shelfCode].items.push({
-                        name: item.item,
-                        quantity: item.stock,
-                        category: item.category
-                    });
-                });
             }
             
-            // Generate the warehouse map
-            layout.forEach(row => {
-                row.forEach(cell => {
-                    if (!cell) return;
-                    
-                    const cellElement = document.createElement('div');
-                    cellElement.className = 'map-cell';
-                    
-                    if (cell === 'aisle') {
-                        cellElement.classList.add('aisle');
-                    }
-                    else if (cell === 'exit') {
-                        cellElement.classList.add('exit');
-                        cellElement.textContent = 'EXIT';
-                    } 
-                    else if (cell === 'unloading') {
-                        cellElement.classList.add('unloading-dock');
-                        cellElement.textContent = 'UNLOADING DOCK';
-                    } 
-                    else if (cell === 'loading') {
-                        cellElement.classList.add('loading-dock');
-                        cellElement.textContent = 'LOADING DOCK';
-                    } 
-                    else {
-                        const shelfData = shelfItems[cell] || {items: [], color: 'linear-gradient(135deg, #6c757d, #adb5bd)'};
-                        cellElement.classList.add('shelf');
-                        cellElement.style.background = shelfData.color;
-                        cellElement.textContent = cell;
-                        cellElement.dataset.shelf = cell;
-                        
-                        // Add hover event for shelf
-                        cellElement.addEventListener('mouseenter', function(e) {
-                            const shelf = this.dataset.shelf;
-                            const items = shelfItems[shelf]?.items || [];
-                            
-                            // Position tooltip
-                            const rect = this.getBoundingClientRect();
-                            tooltip.style.top = `${rect.bottom + window.scrollY}px`;
-                            tooltip.style.left = `${rect.left + window.scrollX}px`;
-                            
-                            // Update tooltip content
-                            document.getElementById('shelfTitle').textContent = `Shelf ${shelf}`;
-                            
-                            const itemsContainer = document.getElementById('shelfItems');
-                            itemsContainer.innerHTML = '';
-                            
-                            if (items.length > 0) {
-                                items.forEach(item => {
-                                    const itemElement = document.createElement('div');
-                                    itemElement.className = 'd-flex justify-content-between py-2 border-bottom';
-                                    itemElement.innerHTML = `
-                                        <span class="fw-medium">${item.name}</span>
-                                        <span class="badge bg-info bg-opacity-25">${item.category}</span>
-                                        <span class="badge bg-primary">${item.quantity} units</span>
-                                    `;
-                                    itemsContainer.appendChild(itemElement);
-                                });
-                            } else {
-                                itemsContainer.innerHTML = '<div class="text-center py-3">No items in this shelf</div>';
-                            }
-                            
-                            // Show tooltip
-                            tooltip.style.display = 'block';
-                        });
-                        
-                        cellElement.addEventListener('mouseleave', function() {
-                            tooltip.style.display = 'none';
-                        });
-                    }
-                    
-                    warehouseMap.appendChild(cellElement);
+            if (!shelfItems[shelfCode]) {
+                shelfItems[shelfCode] = {
+                    items: [],
+                    color: shelfColor,
+                    category: category
+                };
+            }
+            
+            items.forEach(item => {
+                shelfItems[shelfCode].items.push({
+                    name: item.item,
+                    quantity: item.stock,
+                    category: item.category
                 });
             });
-            
-            // Close tooltip when mouse leaves
-            tooltip.addEventListener('mouseleave', function() {
-                this.style.display = 'none';
+        }
+        
+        // Generate the warehouse map
+        layout.forEach(row => {
+            row.forEach(cell => {
+                if (!cell) return;
+                
+                const cellElement = document.createElement('div');
+                cellElement.className = 'map-cell';
+                
+                if (cell === 'aisle') {
+                    cellElement.classList.add('aisle');
+                }
+                else if (cell === 'exit') {
+                    cellElement.classList.add('exit');
+                    cellElement.textContent = 'EXIT';
+                } 
+                else if (cell === 'unloading') {
+                    cellElement.classList.add('unloading-dock');
+                    cellElement.textContent = 'UNLOADING DOCK';
+                } 
+                else if (cell === 'loading') {
+                    cellElement.classList.add('loading-dock');
+                    cellElement.textContent = 'LOADING DOCK';
+                } 
+                else {
+                    const shelfData = shelfItems[cell] || {
+                        items: [], 
+                        color: categoryColors['Other'],
+                        category: 'Other'
+                    };
+                    
+                    cellElement.classList.add('shelf');
+                    cellElement.style.background = shelfData.color;
+                    cellElement.textContent = cell;
+                    cellElement.dataset.shelf = cell;
+                    cellElement.dataset.category = shelfData.category;
+                    
+                    // Add hover event for shelf
+                    cellElement.addEventListener('mouseenter', function(e) {
+                        const shelf = this.dataset.shelf;
+                        const items = shelfItems[shelf]?.items || [];
+                        
+                        // Position tooltip
+                        const rect = this.getBoundingClientRect();
+                        tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                        tooltip.style.left = `${rect.left + window.scrollX}px`;
+                        
+                        // Update tooltip content
+                        document.getElementById('shelfTitle').textContent = `Shelf ${shelf} (${this.dataset.category})`;
+                        
+                        const itemsContainer = document.getElementById('shelfItems');
+                        itemsContainer.innerHTML = '';
+                        
+                        if (items.length > 0) {
+                            items.forEach(item => {
+                                const itemElement = document.createElement('div');
+                                itemElement.className = 'd-flex justify-content-between py-2 border-bottom';
+                                itemElement.innerHTML = `
+                                    <span class="fw-medium">${item.name}</span>
+                                    <span class="badge bg-info bg-opacity-25">${item.category}</span>
+                                    <span class="badge bg-primary">${item.quantity} units</span>
+                                `;
+                                itemsContainer.appendChild(itemElement);
+                            });
+                        } else {
+                            itemsContainer.innerHTML = '<div class="text-center py-3">No items in this shelf</div>';
+                        }
+                        
+                        // Show tooltip
+                        tooltip.style.display = 'block';
+                    });
+                    
+                    cellElement.addEventListener('mouseleave', function() {
+                        tooltip.style.display = 'none';
+                    });
+                }
+                
+                warehouseMap.appendChild(cellElement);
             });
         });
+        
+        // Close tooltip when mouse leaves
+        tooltip.addEventListener('mouseleave', function() {
+            this.style.display = 'none';
+        });
+    });
     </script>
 </body>
-
 </html>
