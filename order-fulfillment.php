@@ -29,7 +29,6 @@ include 'config/config.php';
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
             color: #000;
-            padding-bottom: 100px;
         }
         
         .navbar {
@@ -293,6 +292,7 @@ include 'config/config.php';
         animateOnScroll('.section-image-animate');
     </script>
 </html>
+
 
 
 
