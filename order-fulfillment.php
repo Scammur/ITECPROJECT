@@ -197,8 +197,7 @@ include 'config/config.php';
                 </ul>
             </div>
         </div>
-    </nav>
-    <!-- End Navigation -->
+    </nav> <!-- End Navigation -->
 
     <div class="container" style="margin-top: 120px;">
         <!-- Section Title -->
@@ -255,11 +254,11 @@ include 'config/config.php';
                     </tbody>
                 </table>
             </div>       
-
+    </body>
     <!-- Footer -->
-    <footer class="bg-light text-dark py-4">
+     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
-            <div class="text-center">
+            <div class="row text-center mt-4">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
         </div>
@@ -293,8 +292,8 @@ include 'config/config.php';
         animateOnScroll('.example-table tbody tr');
         animateOnScroll('.section-image-animate');
     </script>
-</body>
 </html>
+
 
 
 
