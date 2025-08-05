@@ -243,11 +243,11 @@ include "config/config.php";
             </div>
         </div>
     </div>
-</body>
+
     <!-- Footer -->
-    <footer class="bg-light text-dark py-5 mt-5">
+    <footer class="bg-light text-dark py-4">
         <div class="container">
-            <div class="row text-center mt-4">
+            <div class="text-center">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
         </div>
@@ -278,7 +278,7 @@ include "config/config.php";
         animateOnScroll('.card-feature');
         animateOnScroll('.section-image-animate');
     </script>
+</body>
 
 </html>
-
 
