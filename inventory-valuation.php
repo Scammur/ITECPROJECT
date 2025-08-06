@@ -30,6 +30,12 @@ include "config/config.php";
             background: #f4f4f4;
             color: #000;
         }
+        footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
         .navbar {
             background: #000 !important;
         }
@@ -279,6 +285,7 @@ include "config/config.php";
 </body>
 
 </html>
+
 
 
 
