@@ -36,7 +36,12 @@
             background: #f4f4f4;
             color: #000;
         }
-        
+        footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
         .navbar {
             background: #000 !important;
         }
@@ -518,4 +523,5 @@
         });
     </script>
 </body>
+
 </html>
