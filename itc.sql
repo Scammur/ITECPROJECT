@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2025 at 04:17 AM
+-- Generation Time: Aug 06, 2025 at 05:52 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -43,10 +43,18 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`item`, `bar`, `category`, `location`, `price`, `id`, `stock`, `notified`) VALUES
-('3-Phase Industrial Motor', 'IND-SIE-1LA7163-5KW', 'Industrial & Power Electronics', 'RACK 3A', 499.00, 21, 100, 0),
 ('Gaming Keyboard', 'COM-LOG-GPROX-W-BK', 'Computer Hardware & Peripherals', 'RACK 5A', 299.00, 22, 300, 0),
 ('Smart Refrigerator', 'HOM-LG-LMXS28596S-28-SS', 'Home Appliances', 'RACK 1B', 199.00, 23, 550, 0),
-('Wireless Earbuds', 'CEL-SON-WF1000XM5-SL', 'Consumer Electronics', 'RACK 1C', 99.00, 24, 10, 0);
+('Wireless Earbuds', 'CEL-SON-WF1000XM5-SL', 'Consumer Electronics', 'RACK 1C', 99.00, 24, 10, 0),
+('Gaming Keyboard', 'COM-LOG-GPROX-W-BK', 'Computer Hardware & Peripherals', 'RACK 5A', 129.99, 27, 300, 0),
+('Smart Refrigerator', 'HOM-LG-LMXS28596S-28-SS', 'Home Appliances', 'RACK 1B', 2499.99, 28, 550, 0),
+('Wireless Earbuds', 'CEL-SON-WF1000XM5-SL', 'Consumer Electronics', 'RACK 1C', 279.99, 29, 10, 0),
+('Industrial Air Compressor', 'IND-ING-AC75V2-7.5KW', 'Industrial & Power Electronics', 'RACK 3B', 1250.50, 30, 25, 0),
+('Mechanical Gaming Mouse', 'COM-RAZ-BASILV3-BK', 'Computer Hardware & Peripherals', 'RACK 5B', 69.99, 31, 150, 0),
+('Smart Washing Machine', 'HOM-SAM-WW10T654DAH-XL', 'Home Appliances', 'RACK 1D', 799.99, 32, 75, 0),
+('Bluetooth Speaker', 'CEL-JBL-FLIP6-BLUE', 'Consumer Electronics', 'RACK 2A', 119.99, 33, 200, 0),
+('CNC Machine Controller', 'IND-FAN-0iMF-TOUCH', 'Industrial & Power Electronics', 'RACK 4A', 3200.00, 34, 15, 0),
+('Ultra HD Monitor', 'COM-DEL-S3222DGM-32', 'Computer Hardware & Peripherals', 'RACK 6C', 449.99, 35, 80, 0);
 
 --
 -- Indexes for dumped tables
@@ -66,7 +74,7 @@ ALTER TABLE `stocks`
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
