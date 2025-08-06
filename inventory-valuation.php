@@ -245,11 +245,9 @@ include "config/config.php";
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-dark py-5 mt-5">
-        <div class="container">
-            <div class="text-center mt-4">
-                &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
-            </div>
+    <footer class="bg-light py-5 mt-5">
+        <div class="container text-center">
+            &copy; <?= date("Y") ?> Xophia’s Inventory & Warehouse Management
         </div>
     </footer>
     <!-- End Footer -->
@@ -281,6 +279,7 @@ include "config/config.php";
 </body>
 
 </html>
+
 
 
 
