@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        html {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
         :root {
             --primary: #0d6efd;
             --warning: #ffc107;
@@ -125,21 +132,21 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container-fluid">
             <a class="navbar-brand ps-4" href="index.php">
-                <i class="fa-solid fa-warehouse me-2"></i>Inventory & Warehouse Management
+              <i class="fa-solid fa-warehouse me-2"></i>Inventory & Warehouse Management
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item ms-lg-5">
-                        <a class="nav-link" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
+                    <li class="nav-item ms-5">
+                        <a class="nav-link active" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="inventory-valuation.php"><i class="fa-solid fa-coins me-1"></i>Inventory Valuation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
+                        <a class="nav-link" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="order-fulfillment.php"><i class="fa-solid fa-truck-ramp-box me-1"></i>Order Fulfillment</a>
