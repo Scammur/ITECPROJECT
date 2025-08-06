@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
+        /* Add this to your existing CSS */
+        .table td:nth-child(7) {
+            min-width: 105px;
+            white-space: nowrap;
+        }
         :root {
             --primary: #0d6efd;
             --warning: #ffc107;
@@ -37,7 +42,6 @@
             color: #000;
         }
         footer{
-            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
@@ -110,7 +114,7 @@
         
         .main-container {
             margin: 2em auto;
-            max-width: 2000px;
+            max-width: 3000px;
             background: #fff;
             padding: 2em;
             border-radius: 8px;
