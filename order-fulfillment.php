@@ -30,6 +30,13 @@ include 'config/config.php';
             background: #f4f4f4;
             color: #000;
         }
+
+        footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
         
         .navbar {
             background: #000 !important;
@@ -219,11 +226,11 @@ include 'config/config.php';
                     <thead>
                         <tr>
                             <th>Order #</th>
-                            <td>Date Ordered</td>
+                            <th>Date Ordered</th>
                             <th>Items</th>
                             <th>Order Status</th>
                             <th>Shipping Status</th>
-                            <td>Date Received</td>
+                            <th>Date Received</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -254,14 +261,13 @@ include 'config/config.php';
                     </tbody>
                 </table>
             </div>       
-
+        </div>                        
     <!-- Footer -->
     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
             <div class="text-center mt-4">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
-        </div>
     </footer>
     <!-- End Footer -->
 
@@ -294,11 +300,3 @@ include 'config/config.php';
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
