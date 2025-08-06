@@ -92,7 +92,7 @@
             color: white;
             padding: 15px;
             border-radius: 10px;
-            width: 300px;
+            max-width: 1000px;
             z-index: 100;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             display: none;
