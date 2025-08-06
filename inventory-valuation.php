@@ -73,6 +73,9 @@ include "config/config.php";
             background: #363636;
             color: #fff;
             font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         .table tbody tr {
             background: #fff;
@@ -107,6 +110,13 @@ include "config/config.php";
         .section-image-animate.in-view {
             opacity: 1 !important;
             transform: none !important;
+        }
+
+        /* Scrollable table container */
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+            display: block;
         }
     </style>
 </head>
@@ -213,34 +223,33 @@ include "config/config.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example rows, replace with PHP & DB integration -->
                         <?php 
-                                $query = "SELECT *, concat(price * stock) as totalCost FROM stocks";
-                                $res = mysqli_query($conn, $query);
-                                while ($data = mysqli_fetch_array($res)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $data['item']; ?></td>
-                                        <td><?php echo $data['category']; ?></td> 
-                                        <td><?php echo $data['location']; ?></td> 
-                                        <td><?php echo $data['stock']; ?></td>
-                                        <td><?php echo $data['price']; ?></td>
-                                        <td><?php echo $data['totalCost']; ?></td>
-                                    </tr>
-                                    <?php
-                                    }
+                            $query = "SELECT *, (price * stock) as totalCost FROM stocks";
+                            $res = mysqli_query($conn, $query);
+                            while ($data = mysqli_fetch_array($res)) {
+                        ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($data['item']); ?></td>
+                            <td><?php echo htmlspecialchars($data['category']); ?></td> 
+                            <td><?php echo htmlspecialchars($data['location']); ?></td> 
+                            <td><?php echo (int)$data['stock']; ?></td>
+                            <td><?php echo number_format($data['price'], 2); ?></td>
+                            <td><?php echo number_format($data['totalCost'], 2); ?></td>
+                        </tr>
+                        <?php
+                            }
                         ?>
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="5" class="text-end">Total Inventory Value</th>
                             <?php
-                                $query = "SELECT sum(price * stock) as totalval FROM stocks";
+                                $query = "SELECT SUM(price * stock) as totalval FROM stocks";
                                 $res = mysqli_query($conn, $query);
                                 while($data2 = mysqli_fetch_array($res)){
-                                    ?>
-                                    <th><?php echo $data2['totalval']?></th>
-                                    <?php
+                            ?>
+                            <th><?php echo number_format($data2['totalval'], 2);?></th>
+                            <?php
                                 }
                             ?>
                         </tr>
@@ -283,10 +292,4 @@ include "config/config.php";
         animateOnScroll('.section-image-animate');
     </script>
 </body>
-
 </html>
-
-
-
-
-
