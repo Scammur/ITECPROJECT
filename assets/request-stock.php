@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reqbtn'])) {
         }
     }
 
-    // Determine status label
     if ($stock === 0) {
         $label = "Out of Stock";
     } elseif ($stock <= 50) {
@@ -61,12 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reqbtn'])) {
     $apiResp = @file_get_contents($apiUrl);
 
     if ($apiResp !== false) {
-        // Optionally, store into local DB as request log
-        /*
-        $stmt = $conn->prepare("INSERT INTO stock_requests (sku, item, quantity, location, status, request_date) VALUES (?, ?, ?, ?, 'pending', NOW())");
-        $stmt->bind_param("ssis", $skuRaw, $itemRaw, $quantity, $locationRaw);
-        $stmt->execute();
-        */
         header("Location: ../view.php?barcode=".rawurlencode($skuRaw)."&status=success");
     } else {
         header("Location: ../view.php?barcode=".rawurlencode($skuRaw)."&status=fail");
@@ -77,3 +70,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reqbtn'])) {
     exit();
 }
 ?>
+
