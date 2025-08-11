@@ -5,9 +5,8 @@ include 'config/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="img/ico/logo.ico">
     <title>Order Fulfillment | Inventory & Warehouse Management</title>
-    
+    <link rel="icon" href="img/ico/logo.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS CDN -->
@@ -30,13 +29,6 @@ include 'config/config.php';
             font-family: 'Inter', Arial, sans-serif;
             background: #f4f4f4;
             color: #000;
-        }
-
-        footer{
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
         }
         
         .navbar {
@@ -232,6 +224,7 @@ include 'config/config.php';
                             <th>Order Status</th>
                             <th>Shipping Status</th>
                             <th>Date Received</th>
+                            <th>Review & Ratings</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -242,6 +235,26 @@ include 'config/config.php';
                             <td class="text-success"><i class="fa-solid fa-check-circle"></i>Confirmed</td>
                             <td class="text-success"><i class="fa-solid fa-check-circle"></i>Delivered</td>
                             <td class="text-success"><i class="fa-solid fa-clock"></i>04/01/25</td>
+                            <td>
+  <div id="review-section-1001">
+    <!-- Review Input Form -->
+    <div id="review-form-1001">
+      <textarea id="review-input-1001" class="form-control mb-2" rows="2" placeholder="Write your review..."></textarea>
+      <button type="button" class="btn btn-dark btn-sm w-100" onclick="submitReview('1001')">
+        Submit Review
+      </button>
+    </div>
+
+    <!-- Submitted Review Display -->
+    <div id="review-display-1001" class="mt-2" style="display: none;">
+      <div class="border p-2 rounded bg-light" id="review-text-1001"></div>
+      <button type="button" class="btn btn-outline-secondary btn-sm mt-2" onclick="editReview('1001')">
+        Edit Review
+      </button>
+    </div>
+  </div>
+</td>
+
                         </tr>
                         <tr>
                             <td>#1002</td>
@@ -262,13 +275,14 @@ include 'config/config.php';
                     </tbody>
                 </table>
             </div>       
-        </div>                        
+    </div>
     <!-- Footer -->
     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
             <div class="text-center mt-4">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
+       
     </footer>
     <!-- End Footer -->
 
@@ -301,3 +315,11 @@ include 'config/config.php';
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
