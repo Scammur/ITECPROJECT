@@ -350,7 +350,7 @@
             <div class="section-title mb-4">What our users say</div>
             <div class="d-flex flex-wrap gap-4">
                 <div class="card-feature testimonial-animate" style="width:287px;">
-                    <div class="testimonial-quote mb-4">“Very efficient, very demure.”</div>
+                    <div class="testimonial-quote mb-4">“very demure.”</div>
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-avatar" alt="Jommel Sean B. Quilon">
                         <div>
