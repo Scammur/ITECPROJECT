@@ -162,6 +162,25 @@
         .navbar .dropdown-menu {
             font-size: 0.95rem;
         }
+        .process-card img {
+    width: 100%;
+    height: 200px; /* fixed image height */
+    object-fit: cover; /* no stretching, crops instead */
+    flex-shrink: 0; /* prevents shrinking */
+}
+
+/* Make all cards same width */
+.process-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Keep text below image and let it grow */
+.process-card .feature-title,
+.process-card .feature-desc {
+    flex-grow: 0;
+}
 
     </style>
 </head>
@@ -260,10 +279,10 @@
         <div class="row mb-4 mb-5">
             <div class="col-12 text-center">
                 <img 
-                    src="img\index\image1.png"
+                    src="img/index/image1.jpg"
                     alt="Warehouse Overview"
                     class="img-fluid rounded shadow section-image-animate"
-                    style="max-height:700px;object-fit:cover;">
+                    style="max-height:700px;object-fit:cover;"> 
             </div>
         </div>
 
@@ -292,39 +311,40 @@
             </div>
         </div>
 
-        <!-- 4 Processes Section -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="section-title text-center mb-5">4 warehouse inventory management processes</div>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center gap-4">
-                <!-- Stock Tracking Card -->
-                <div class="card-feature" style="width:300px">
-                    <img src="img\index\image2.png" class="img-fluid rounded mb-3" alt="Stock Tracking">
-                    <div class="feature-title mb-2">Stock Tracking</div>
-                    <div class="feature-desc mb-2">The process of monitoring inventory levels and movement within a warehouse.</div>
-                </div>
-                <!-- Inventory Valuation Card -->
-                <div class="card-feature" style="width:300px">
-                    <img src="img\index\image3.png" class="img-fluid rounded mb-3" alt="Inventory Valuation">
-                    <div class="feature-title mb-2">Inventory Valuation</div>
-                    <div class="feature-desc mb-2">Provides accurate financial insights for pricing, reporting, and tax compliance.</div>
-                </div>
-                <!-- Warehouse Layout Card -->
-                <div class="card-feature" style="width:300px">
-                    <img src="img\index\image4.png" class="img-fluid rounded mb-3" alt="Warehouse Layout">
-                    <div class="feature-title mb-2">Warehouse Layout & Optimization</div>
-                    <div class="feature-desc mb-2">Maximizes space and speeds up order fulfillment through smarter organization.</div>
-                </div>
-                <!-- Order Picking Card -->
-                <div class="card-feature" style="width:300px">
-                    <img src="img\index\image5.png" class="img-fluid rounded mb-3" alt="Order Picking">
-                    <div class="feature-title mb-2">Order Picking, Packing & Shipping</div>
-                    <div class="feature-desc mb-2">Ensures fast, accurate, and cost-efficient delivery to boost customer satisfaction.</div>
-                </div>
-            </div>
+   <div class="row mb-5">
+    <div class="col-12">
+        <div class="section-title text-center mb-5">4 warehouse inventory management processes</div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+        <!-- Stock Tracking Card -->
+        <div class="card-feature process-card">
+            <img src="img/index/image2.png" class="rounded mb-3" alt="Stock Tracking">
+            <div class="feature-title mb-2">Stock Tracking</div>
+            <div class="feature-desc mb-2">The process of monitoring inventory levels and movement within a warehouse.</div>
         </div>
 
+        <!-- Inventory Valuation Card -->
+        <div class="card-feature process-card">
+            <img src="img/index/image3.png" class="rounded mb-3" alt="Inventory Valuation">
+            <div class="feature-title mb-2">Inventory Valuation</div>
+            <div class="feature-desc mb-2">Provides accurate financial insights for pricing, reporting, and tax compliance.</div>
+        </div>
+
+        <!-- Warehouse Layout Card -->
+        <div class="card-feature process-card">
+            <img src="img/index/image4.png" class="rounded mb-3" alt="Warehouse Layout">
+            <div class="feature-title mb-2">Warehouse Layout & Optimization</div>
+            <div class="feature-desc mb-2">Maximizes space and speeds up order fulfillment through smarter organization.</div>
+        </div>
+
+        <!-- Order Picking Card -->
+        <div class="card-feature process-card">
+            <img src="img/index/image5.jpg" class="rounded mb-3" alt="Order Picking">
+            <div class="feature-title mb-2">Order Fullfilment</div>
+            <div class="feature-desc mb-2">Track and manage orders.</div>
+        </div>
+    </div>
+</div>
         <!-- Testimonials -->
         <div class="row my-5">
             <div class="section-title mb-4">What our users say</div>
