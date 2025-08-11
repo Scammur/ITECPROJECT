@@ -108,8 +108,6 @@ include "config/config.php";
 
         /* Scrollable table container */
         .table-responsive {
-            max-height: 400px;
-            overflow-y: auto;
             display: block;
         }
 
