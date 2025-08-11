@@ -15,7 +15,8 @@ if (isset($_POST['updateItem'])) {
         category = '$category', 
         location = '$location', 
         stock = '$stock', 
-        price = '$price' 
+        price = '$price',
+        notified = 0
         WHERE bar = '$sku'";
 
     if (mysqli_query($conn, $updateQuery)) {
