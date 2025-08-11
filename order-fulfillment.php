@@ -228,50 +228,37 @@ include 'config/config.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#1001</td>
-                            <td>03/08/25</td>
-                            <td>Widget A x2, Box B x1</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Confirmed</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Delivered</td>
-                            <td class="text-success"><i class="fa-solid fa-clock"></i>04/01/25</td>
-                            <td>
-  <div id="review-section-1001">
-    <!-- Review Input Form -->
-    <div id="review-form-1001">
-      <textarea id="review-input-1001" class="form-control mb-2" rows="2" placeholder="Write your review..."></textarea>
-      <button type="button" class="btn btn-dark btn-sm w-100" onclick="submitReview('1001')">
-        Submit Review
-      </button>
-    </div>
+                            <?php
+                            $quer = "SELECT * FROM orders";
+                            $res = mysqli_query($conn, $quer);
+                            while ($l = mysqli_fetch_array($res)) {   
+                                ?>
+                                <tr>
+                                    <td class="text-center fw-bold text-nowrap"><?php echo $l['order_number']; ?></td>
+                                    <td class="text-center text-nowrap"><?php echo $l['date_ordered']; ?></td>
+                                    <td class="text-center"><?php echo $l['items']; ?></td>
+                                    <td class="text-center fw-semibold 
+                                    <?php echo ($l['order_status'] == 'Completed') ? 'text-success' : (($l['order_status'] == 'Pending') ? 'text-warning' : 'text-danger'); ?>">
+                                    <?php echo $l['order_status']; ?>
+                                    </td>
+                                    <td class="text-center fw-semibold 
+                                    <?php echo ($l['shipping_status'] == 'Shipped') ? 'text-primary' : (($l['shipping_status'] == 'Processing') ? 'text-warning' : 'text-danger'); ?>">
+                                    <?php echo $l['shipping_status']; ?>
+                                    </td>
+                                    <td class="text-center text-nowrap"><?php echo $l['date_received']; ?></td>
+                                    <td class="text-center">
+                                        <form method="POST" action="assets/review-order.php">
+                                            <input type="hidden" name="order_id" value="<?php echo $l['order_number']; ?>">
+                                            <button type="submit" class="btn btn-outline-primary btn-sm px-3 py-1 rounded-pill shadow-sm">
+                                                <i class="fa-solid fa-star me-1"></i> Review
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
 
-    <!-- Submitted Review Display -->
-    <div id="review-display-1001" class="mt-2" style="display: none;">
-      <div class="border p-2 rounded bg-light" id="review-text-1001"></div>
-      <button type="button" class="btn btn-outline-secondary btn-sm mt-2" onclick="editReview('1001')">
-        Edit Review
-      </button>
-    </div>
-  </div>
-</td>
-
-                        </tr>
-                        <tr>
-                            <td>#1002</td>
-                            <td>04/02/25</td>
-                            <td>Mouse C x3</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Confirmed</td>
-                            <td class="text-success"><i class="fa-solid fa-check-circle"></i>Packed</td>
-                            <td class="text-secondary"><i class="fa-solid fa-minus-circle"></i>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>#1003</td>
-                            <td>04/03/25</td>
-                            <td>Keyboard B x10</td>
-                            <td class="text-danger"><i class="fa-solid fa-times-circle"></i>Cancelled</td>
-                            <td class="text-danger"><i class="fa-solid fa-times-circle"></i>N/A</td>
-                            <td class="text-danger"><i class="fa-solid fa-truck"></i>N/A</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>       
