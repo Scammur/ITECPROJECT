@@ -391,13 +391,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Creator comments -->
-        <div class="row my-5">
-            <div class="col-12 text-center">
-                <span class="section-title">Creator Comments</span>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -463,6 +456,7 @@
     </script>
 </body>
 </html>
+
 
 
 
