@@ -153,7 +153,7 @@ include "config/config.php";
                         <a class="nav-link" href="stock-tracking.php"><i class="fa-solid fa-cubes-stacked me-1"></i>Stock Tracking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="inventory-valuation.php"><i class="fa-solid fa-coins me-1"></i>Inventory Valuation</a>
+                        <a class="nav-link active" href="inventory-valuation.php"><i class="fa-solid fa-coins me-1"></i>Inventory Valuation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="warehouse-layout-optimization.php"><i class="fa-solid fa-sitemap me-1"></i>Warehouse Layout & Optimization</a>
@@ -344,4 +344,5 @@ include "config/config.php";
         animateOnScroll('.section-image-animate');
     </script>
 </body>
+
 </html>
