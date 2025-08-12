@@ -238,17 +238,18 @@ include 'config/config.php';
                                     <td class="text-center text-nowrap"><?php echo $l['date_ordered']; ?></td>
                                     <td class="text-center"><?php echo $l['items']; ?></td>
                                     <td class="text-center fw-semibold 
-                                    <?php echo ($l['order_status'] == 'Completed') ? 'text-success' : (($l['order_status'] == 'Pending') ? 'text-warning' : 'text-danger'); ?>">
+                                    <?php echo ($l['order_status'] == 'Confirmed') ? 'text-success' : (($l['order_status'] == 'Pending') ? 'text-warning' : 'text-danger'); ?>">
                                     <?php echo $l['order_status']; ?>
                                     </td>
                                     <td class="text-center fw-semibold 
-                                    <?php echo ($l['shipping_status'] == 'Shipped') ? 'text-primary' : (($l['shipping_status'] == 'Processing') ? 'text-warning' : 'text-danger'); ?>">
+                                    <?php echo ($l['shipping_status'] == 'Delivered') ? 'text-success' : (($l['shipping_status'] == 'Packed') ? 'text-warning' : (($l['shipping_status'] == "Pending") ? 'text-danger' : 'text-secondary')); ?>">
                                     <?php echo $l['shipping_status']; ?>
                                     </td>
                                     <td class="text-center text-nowrap"><?php echo $l['date_received']; ?></td>
                                     <td class="text-center">
                                         <form method="POST" action="assets/review-order.php">
                                             <input type="hidden" name="order_id" value="<?php echo $l['order_number']; ?>">
+                                            <input type="hidden" name="items" value="<?php echo htmlspecialchars($l['items']); ?>">
                                             <button type="submit" class="btn btn-outline-primary btn-sm px-3 py-1 rounded-pill shadow-sm">
                                                 <i class="fa-solid fa-star me-1"></i> Review
                                             </button>

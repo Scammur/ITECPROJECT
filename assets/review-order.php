@@ -1,8 +1,9 @@
 <?php
 include '../config/config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id']) && isset($_POST['items'])) {
     $order_id = mysqli_real_escape_string($conn, $_POST['order_id']);
+    $items = mysqli_real_escape_string($conn, $_POST['items']);
 } else {
     die("Invalid access.");
 }
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
     <div class="container mt-5">
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h5><i class="fa-solid fa-star me-2"></i>Review Order <?php echo htmlspecialchars($order_id); ?></h5>
+                <h5><i class="fa-solid"></i>Review Order <br> ID: <?php echo htmlspecialchars($order_id); ?><br>Items: <?php echo htmlspecialchars($items); ?></h5>
             </div>
             <div class="card-body">
                 <form action="submit-review.php" method="POST">

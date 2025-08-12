@@ -304,7 +304,7 @@
                                 $status_class = 'out-stock';
                                 $status_icon = 'fa-xmark-circle';
                                 $status_text = 'Out of Stock';
-                            } elseif($data['stock'] > 50){
+                            } elseif($data['stock'] > 49){
                                 $status_class = 'in-stock';
                                 $status_icon = 'fa-circle';
                                 $status_text = 'In Stock';

@@ -57,6 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reqbtn'])) {
     $apiResp = @file_get_contents($apiUrl);
 
     if ($apiResp !== false) {
+        $quer = "insert into orders(date_ordered, items, order_status, shipping_status, date_received, created_at) values(date(NOW()), '$itemRaw','Pending','N/A', NULL, NOW())";
+        mysqli_query($conn,$quer);
         header("Location: ../view.php?barcode=".rawurlencode($skuRaw)."&status=success");
     } else {
         header("Location: ../view.php?barcode=".rawurlencode($skuRaw)."&status=fail");
