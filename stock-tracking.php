@@ -22,7 +22,7 @@
     <!-- Animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    <style>
+     <style>
         /* Add this to your existing CSS */
         .table td:nth-child(7) {
             min-width: 105px;
@@ -178,6 +178,32 @@
             background: #e9ecef;
             border: 1px solid #dee2e6;
         }
+        .table thead th {
+    position: relative;
+}
+
+.table thead th select.form-select {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 30px;
+    font-size: 12px;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.table thead th:hover select.form-select {
+    border-color: #aaa;
+}
+
+/* Adjust the category header to accommodate the dropdown */
+.table thead th:nth-child(3) {
+    padding-right: 140px;
+    min-width: 200px;
+}        
     </style>
 </head>
 <body>
@@ -449,82 +475,104 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     
-    <script>
-        // Initialize DataTable with sorting and search functionality
-        $(document).ready(function() {
-            var table = $('#stockTable').DataTable({
-                responsive: true,
-                dom: '<"top"lf>rt<"bottom"ip>',
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search items...",
-                    lengthMenu: "Show _MENU_ entries",
-                    paginate: {
-                        previous: '<i class="fa-solid fa-chevron-left"></i>',
-                        next: '<i class="fa-solid fa-chevron-right"></i>'
-                    }
-                },
-                columnDefs: [
-                    { orderable: true, targets: [0, 1, 2, 3, 4, 5] },
-                    { orderable: false, targets: [6] }
-                ],
-                initComplete: function() {
-                    // Remove dropdown arrow from length menu
-                    $('.dataTables_length select').removeClass('form-select-sm').addClass('form-select');
-                    $('.dataTables_filter input').removeClass('form-control-sm').addClass('form-control');
-                    
-                    // Custom styling for controls container
-                    $('.dataTables_wrapper .top').css({
-                        'display': 'flex',
-                        'align-items': 'center',
-                        'flex-wrap': 'wrap',
-                        'gap': '10px'
-                    });
-                }
-            });
-            
-            // Add custom sorting for the Status column (based on stock numbers)
-            table.on('order.dt search.dt', function() {
-                table.column(5, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
-                    cell.setAttribute('data-order', $(cell).find('.stock-status').data('order'));
-                });
-            }).draw();
-            
-            // SKU validation for the add item modal
-            const skuInput = document.getElementById('skuInput');
-            const skuFeedback = document.getElementById('skuFeedback');
-            const submitBtn = document.getElementById('submitBtn');
-            const form = document.getElementById('addItemForm');
-            
-            skuInput.addEventListener('change', function() {
-                checkSKU(this.value);
-            });
-            
-            form.addEventListener('submit', function(e) {
-                if (skuInput.classList.contains('is-invalid')) {
-                    e.preventDefault();
-                    skuFeedback.style.display = 'block';
-                }
-            });
-            
-            function checkSKU(sku) {
-                if (!sku) return;
-                
-                fetch('check_sku.php?sku=' + encodeURIComponent(sku))
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.exists) {
-                            skuInput.classList.add('is-invalid');
-                            skuFeedback.style.display = 'block';
-                            submitBtn.disabled = true;
-                        } else {
-                            skuInput.classList.remove('is-invalid');
-                            skuFeedback.style.display = 'none';
-                            submitBtn.disabled = false;
-                        }
-                    });
+     <script>
+   // Initialize DataTable with sorting and search functionality
+$(document).ready(function() {
+    var table = $('#stockTable').DataTable({
+        responsive: true,
+        dom: '<"top"lf>rt<"bottom"ip>',
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search items...",
+            lengthMenu: "Show _MENU_ entries",
+            paginate: {
+                previous: '<i class="fa-solid fa-chevron-left"></i>',
+                next: '<i class="fa-solid fa-chevron-right"></i>'
             }
+        },
+        columnDefs: [
+    { orderable: true, targets: [0, 1, 3, 4, 5] },
+    { orderable: false, targets: [2, 6] }
+
+        ],
+        initComplete: function() {
+            // Remove dropdown arrow from length menu
+            $('.dataTables_length select').removeClass('form-select-sm').addClass('form-select');
+            $('.dataTables_filter input').removeClass('form-control-sm').addClass('form-control');
+            
+            // Custom styling for controls container
+            $('.dataTables_wrapper .top').css({
+                'display': 'flex',
+                'align-items': 'center',
+                'flex-wrap': 'wrap',
+                'gap': '10px'
+            });
+            
+            // Add category filter dropdown inside the category header
+            this.api().columns(2).every(function() {
+                var column = this;
+                var header = $(column.header());
+                var select = $('<select class="form-select form-select-sm"><option value="">All</option></select>')
+                    .appendTo(header)
+                    .css({
+                        'width': '120px',
+                        'margin-left': '10px',
+                        'display': 'inline-block'
+                    })
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                    });
+                
+                column.data().unique().sort().each(function(d, j) {
+                    select.append('<option value="' + d + '">' + d + '</option>');
+                });
+            });
+        }
+    });
+    
+    // Add custom sorting for the Status column (based on stock numbers)
+    table.on('order.dt search.dt', function() {
+        table.column(5, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
+            cell.setAttribute('data-order', $(cell).find('.stock-status').data('order'));
         });
+    }).draw();
+    
+    // SKU validation for the add item modal
+    const skuInput = document.getElementById('skuInput');
+    const skuFeedback = document.getElementById('skuFeedback');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('addItemForm');
+    
+    skuInput.addEventListener('change', function() {
+        checkSKU(this.value);
+    });
+    
+    form.addEventListener('submit', function(e) {
+        if (skuInput.classList.contains('is-invalid')) {
+            e.preventDefault();
+            skuFeedback.style.display = 'block';
+        }
+    });
+    
+    function checkSKU(sku) {
+        if (!sku) return;
+        
+        fetch('check_sku.php?sku=' + encodeURIComponent(sku))
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    skuInput.classList.add('is-invalid');
+                    skuFeedback.style.display = 'block';
+                    submitBtn.disabled = true;
+                } else {
+                    skuInput.classList.remove('is-invalid');
+                    skuFeedback.style.display = 'none';
+                    submitBtn.disabled = false;
+                }
+            });
+    }
+});
     </script>
 </body>
 
