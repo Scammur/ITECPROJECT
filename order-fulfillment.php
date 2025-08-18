@@ -1,5 +1,17 @@
 <?php
 include 'config/config.php';
+
+// Pagination variables
+$limit = 10; // Number of records per page
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($current_page - 1) * $limit;
+
+// Get total number of orders
+$total_orders_query = "SELECT COUNT(*) as total FROM orders";
+$total_orders_result = mysqli_query($conn, $total_orders_query);
+$total_rows = mysqli_fetch_assoc($total_orders_result)['total'];
+$total_pages = ceil($total_rows / $limit);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +21,12 @@ include 'config/config.php';
     <link rel="icon" href="img/ico/logo.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts Inter (optional, fallback to sans-serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
@@ -30,7 +38,7 @@ include 'config/config.php';
             background: #f4f4f4;
             color: #000;
         }
-        
+
         .navbar {
             background: #000 !important;
         }
@@ -127,7 +135,6 @@ include 'config/config.php';
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container-fluid">
             <a class="navbar-brand ps-4" href="index.php">
@@ -164,13 +171,13 @@ include 'config/config.php';
                                 </span>
                             </a>
                              <script>
-                                function markNotificationsSeen() {
-                                    fetch('assets/msee.php', {
-                                        method: 'POST'
-                                    }).then(() => {
-                                        document.querySelector('.badge').textContent = '0';
-                                    });
-                                }
+                                 function markNotificationsSeen() {
+                                     fetch('assets/msee.php', {
+                                         method: 'POST'
+                                     }).then(() => {
+                                         document.querySelector('.badge').textContent = '0';
+                                     });
+                                 }
                             </script>
                             <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="notificationDropdown" style="min-width: 300px;">
                                 <li><h6 class="dropdown-header">Notifications</h6></li>
@@ -189,18 +196,14 @@ include 'config/config.php';
                                     }
                                 }
                                 ?>
-                                 <!--<hr class="dropdown-divider"></li>-->
-                            </ul>
+                                 </ul>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- End Navigation -->
-
     <div class="container" style="margin-top: 120px;">
-        <!-- Section Title -->
         <div class="row mb-4">
             <div class="col-12 animate__animated animate__fadeInLeft">
                 <div class="section-title mb-2">
@@ -229,9 +232,9 @@ include 'config/config.php';
                     </thead>
                     <tbody>
                             <?php
-                            $quer = "SELECT * FROM orders";
+                            $quer = "SELECT * FROM orders ORDER BY date_ordered DESC LIMIT $limit OFFSET $offset";
                             $res = mysqli_query($conn, $quer);
-                            while ($l = mysqli_fetch_array($res)) {   
+                            while ($l = mysqli_fetch_array($res)) {  
                                 ?>
                                 <tr>
                                     <td class="text-center fw-bold text-nowrap"><?php echo $l['order_number']; ?></td>
@@ -262,19 +265,32 @@ include 'config/config.php';
 
                     </tbody>
                 </table>
-            </div>       
+            </div> 
+        
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item <?php if ($current_page <= 1) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=<?php echo $current_page - 1; ?>">Previous</a>
+                </li>
+                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                    <li class="page-item <?php if ($i == $current_page) echo 'active'; ?>">
+                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+                <li class="page-item <?php if ($current_page >= $total_pages) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=<?php echo $current_page + 1; ?>">Next</a>
+                </li>
+            </ul>
+        </nav>
+            
     </div>
-    <!-- Footer -->
     <footer class="bg-light text-dark py-5 mt-5">
         <div class="container">
             <div class="text-center mt-4">
                 &copy; <?php echo date("Y"); ?> Inventory & Warehouse Management
             </div>
-       
+        
     </footer>
-    <!-- End Footer -->
-
-    <!-- Bootstrap JS Bundle (with Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Animate on scroll for .main-container, .highlight, .process-step, .example-table tbody tr, and .section-image-animate
@@ -303,12 +319,3 @@ include 'config/config.php';
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
